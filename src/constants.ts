@@ -20,6 +20,10 @@ export enum CommandKey {
   RepeatMostRecent = "repeatMostRecent",
   ToggleZenMode = "toggleZenMode",
   OpenFile = "openFile",
+  EditBindings = "editBindings",
+  QuickAddBinding = "quickAddBinding",
+  RemoveBinding = "removeBinding",
+  OpenBindingsSettings = "openBindingsSettings",
 }
 
 export enum SortOrder {
@@ -58,4 +62,8 @@ export const Commands = {
   RepeatMostRecent: `${contributePrefix}.${CommandKey.RepeatMostRecent}`,
   ToggleZen: `${contributePrefix}.${CommandKey.ToggleZenMode}`,
   OpenFile: `${contributePrefix}.${CommandKey.OpenFile}`,
+  EditBindings: `${contributePrefix}.${CommandKey.EditBindings}`,
+  QuickAddBinding: `${contributePrefix}.${CommandKey.QuickAddBinding}`,
+  RemoveBinding: `${contributePrefix}.${CommandKey.RemoveBinding}`,
+  OpenBindingsSettings: `${contributePrefix}.${CommandKey.OpenBindingsSettings}`,
 };

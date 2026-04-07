@@ -1,4 +1,10 @@
 import { commands, ExtensionContext } from "vscode";
+import {
+  showBindingsEditor,
+  quickAddBinding,
+  removeBinding,
+  openBindingsSettings,
+} from "./bindingEditor";
 import { CommandRelay } from "./commandRelay";
 import { Commands } from "./constants";
 import { showTransientMenu } from "./menu/transientMenu";
@@ -34,6 +40,11 @@ export function activate(context: ExtensionContext): void {
     commands.registerCommand(Commands.RepeatMostRecent, registry.repeatMostRecent, registry),
     commands.registerCommand(Commands.ToggleZen, cmdRelay.toggleZenMode, cmdRelay),
     commands.registerCommand(Commands.OpenFile, openFile),
+    // Binding editor commands
+    commands.registerCommand(Commands.EditBindings, showBindingsEditor),
+    commands.registerCommand(Commands.QuickAddBinding, quickAddBinding),
+    commands.registerCommand(Commands.RemoveBinding, removeBinding),
+    commands.registerCommand(Commands.OpenBindingsSettings, openBindingsSettings),
   );
 
   context.subscriptions.push(registry, cmdRelay, statusBar);

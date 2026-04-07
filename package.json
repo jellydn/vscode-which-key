@@ -7,7 +7,7 @@
     "author": {
         "name": "Steven Guh"
     },
-    "version": "0.11.4",
+    "version": "0.12.0",
     "engines": {
         "vscode": "^1.95.0"
     },
@@ -61,6 +61,30 @@
                 "command": "whichkey.show",
                 "title": "Show Menu",
                 "category": "Which Key"
+            },
+            {
+                "command": "whichkey.editBindings",
+                "title": "Edit Bindings",
+                "category": "Which Key",
+                "icon": "$(edit)"
+            },
+            {
+                "command": "whichkey.quickAddBinding",
+                "title": "Quick Add Binding",
+                "category": "Which Key",
+                "icon": "$(add)"
+            },
+            {
+                "command": "whichkey.removeBinding",
+                "title": "Remove Binding",
+                "category": "Which Key",
+                "icon": "$(trash)"
+            },
+            {
+                "command": "whichkey.openBindingsSettings",
+                "title": "Open Bindings Settings (JSON)",
+                "category": "Which Key",
+                "icon": "$(file-code)"
             }
         ],
         "configuration": [
@@ -1491,7 +1515,27 @@
                     }
                 }
             }
-        ]
+        ],
+        "menus": {
+            "commandPalette": [
+                {
+                    "command": "whichkey.editBindings",
+                    "group": "Which Key@1"
+                },
+                {
+                    "command": "whichkey.quickAddBinding",
+                    "group": "Which Key@2"
+                },
+                {
+                    "command": "whichkey.removeBinding",
+                    "group": "Which Key@3"
+                },
+                {
+                    "command": "whichkey.openBindingsSettings",
+                    "group": "Which Key@4"
+                }
+            ]
+        }
     },
     "scripts": {
         "vscode:prepublish": "webpack --mode production",
