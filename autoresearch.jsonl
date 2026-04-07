@@ -1,1 +1,2 @@
 {"type":"config","name":"Dependency update validation","metricName":"build_time","metricUnit":"","bestDirection":"lower"}
+{"run":1,"commit":"8898d47","metric":2.1,"metrics":{},"status":"keep","description":"Baseline build before dependency updates","timestamp":1775545049794,"segment":0,"confidence":null,"iterationTokens":135}
