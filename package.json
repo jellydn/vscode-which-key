@@ -1503,7 +1503,10 @@
         "test-compile": "tsc -p .",
         "test": "npm run compile && npm run test-node && npm run test-web",
         "test-node": "node ./dist/test/runTest-node.js",
-        "test-web": "node ./dist/test/runTest-web.js"
+        "test-web": "node ./dist/test/runTest-web.js",
+        "pack": "npm run vscode:prepublish && npx @vscode/vsce package --no-dependencies",
+        "pack:ovsx": "npm run vscode:prepublish && npx ovsx pack",
+        "install-local": "code --install-extension whichkey-0.11.4.vsix"
     },
     "devDependencies": {
         "@types/glob": "^9.0.0",
