@@ -3,94 +3,88 @@ import { toBindingItem } from "./config/bindingItem";
 import { CommandRelay } from "./commandRelay";
 import { StatusBar } from "./statusBar";
 import WhichKeyCommand from "./whichKeyCommand";
-import {
-    defaultWhichKeyConfig,
-    toWhichKeyConfig,
-} from "./config/whichKeyConfig";
+import { defaultWhichKeyConfig, toWhichKeyConfig } from "./config/whichKeyConfig";
 
 function notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
-    return value !== null && value !== undefined;
+  return value !== null && value !== undefined;
 }
 
 export class WhichKeyRegistry implements Disposable {
-    private registry: Record<string, WhichKeyCommand>;
-    private statusBar: StatusBar;
-    private cmdRelay: CommandRelay;
+  private registry: Record<string, WhichKeyCommand>;
+  private statusBar: StatusBar;
+  private cmdRelay: CommandRelay;
 
-    constructor(statusBar: StatusBar, cmdRelay: CommandRelay) {
-        this.statusBar = statusBar;
-        this.cmdRelay = cmdRelay;
-        this.registry = {};
+  constructor(statusBar: StatusBar, cmdRelay: CommandRelay) {
+    this.statusBar = statusBar;
+    this.cmdRelay = cmdRelay;
+    this.registry = {};
+  }
+
+  register(obj: any): boolean {
+    const config = toWhichKeyConfig(obj);
+    if (config) {
+      const key = config.bindings;
+      if (!this.has(key)) {
+        this.registry[key] = new WhichKeyCommand(this.statusBar, this.cmdRelay);
+      }
+
+      this.registry[key].register(config);
+      return true;
+    } else {
+      console.warn("Incorrect which-key config format.");
+      return false;
     }
+  }
 
-    register(obj: any): boolean {
-        const config = toWhichKeyConfig(obj);
-        if (config) {
-            const key = config.bindings;
-            if (!this.has(key)) {
-                this.registry[key] = new WhichKeyCommand(
-                    this.statusBar,
-                    this.cmdRelay,
-                );
-            }
+  has(section: string): boolean {
+    return section in this.registry;
+  }
 
-            this.registry[key].register(config);
-            return true;
-        } else {
-            console.warn("Incorrect which-key config format.");
-            return false;
-        }
+  show(args: any): void {
+    if (typeof args === "string") {
+      this.registry[args].show();
+    } else if (Array.isArray(args) && args.length > 0) {
+      // Vim call command with an array with length of 0
+      const bindings = args.map(toBindingItem).filter(notEmpty);
+      WhichKeyCommand.show(bindings, this.statusBar, this.cmdRelay);
+    } else {
+      const key = defaultWhichKeyConfig.bindings;
+      if (!this.has(key)) {
+        this.register(defaultWhichKeyConfig);
+      }
+      this.registry[key].show();
     }
+  }
 
-    has(section: string): boolean {
-        return section in this.registry;
-    }
+  repeatRecent(args: any): Promise<void> {
+    return this.getRegister(args).showPreviousActions();
+  }
 
-    show(args: any): void {
-        if (typeof args === "string") {
-            this.registry[args].show();
-        } else if (Array.isArray(args) && args.length > 0) {
-            // Vim call command with an array with length of 0
-            const bindings = args.map(toBindingItem).filter(notEmpty);
-            WhichKeyCommand.show(bindings, this.statusBar, this.cmdRelay);
-        } else {
-            const key = defaultWhichKeyConfig.bindings;
-            if (!this.has(key)) {
-                this.register(defaultWhichKeyConfig);
-            }
-            this.registry[key].show();
-        }
-    }
+  repeatMostRecent(args: any): Promise<void> {
+    return this.getRegister(args).repeatLastAction();
+  }
 
-    repeatRecent(args: any): Promise<void> {
-        return this.getRegister(args).showPreviousActions();
+  private getRegister(args: any): WhichKeyCommand {
+    if (typeof args === "string") {
+      return this.registry[args];
+    } else {
+      const key = defaultWhichKeyConfig.bindings;
+      if (!this.has(key)) {
+        this.register(defaultWhichKeyConfig);
+      }
+      return this.registry[key];
     }
+  }
 
-    repeatMostRecent(args: any): Promise<void> {
-        return this.getRegister(args).repeatLastAction();
+  unregister(section: string): void {
+    if (this.has(section)) {
+      this.registry[section].unregister();
     }
+  }
 
-    private getRegister(args: any): WhichKeyCommand {
-        if (typeof args === "string") {
-            return this.registry[args];
-        } else {
-            const key = defaultWhichKeyConfig.bindings;
-            if (!this.has(key)) {
-                this.register(defaultWhichKeyConfig);
-            }
-            return this.registry[key];
-        }
+  dispose(): void {
+    for (const key of Object.keys(this.register)) {
+      this.registry[key].unregister();
     }
-
-    unregister(section: string): void {
-        if (this.has(section)) {
-            this.registry[section].unregister();
-        }
-    }
-
-    dispose(): void {
-        for (const key of Object.keys(this.register)) {
-            this.registry[key].unregister();
-        }
-    }
+  }
 }
