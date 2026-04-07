@@ -281,6 +281,961 @@ export async function openBindingsSettings(): Promise<void> {
   await commands.executeCommand("workbench.action.openSettingsJson", { query: setting });
 }
 
+/**
+ * Default bindings as defined in package.json
+ * This is the original VSpaceCode which-key bindings configuration
+ */
+export const defaultBindings: BindingItem[] = [
+  {
+    key: " ",
+    name: "Commands",
+    type: ActionType.Command,
+    command: "workbench.action.showCommands",
+  },
+  {
+    key: "\t",
+    name: "Last editor",
+    type: ActionType.Commands,
+    commands: ["workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup", "list.select"],
+  },
+  {
+    key: "?",
+    name: "Search keybindings",
+    type: ActionType.Command,
+    command: "whichkey.searchBindings",
+  },
+  {
+    key: ".",
+    name: "Repeat most recent action",
+    type: ActionType.Command,
+    command: "whichkey.repeatMostRecent",
+  },
+  {
+    key: "b",
+    name: "+Buffers/Editors",
+    type: ActionType.Bindings,
+    bindings: [
+      {
+        key: "b",
+        name: "Show all buffers/editors",
+        type: ActionType.Command,
+        command: "workbench.action.showAllEditors",
+      },
+      {
+        key: "B",
+        name: "Show all buffers/editors in active group",
+        type: ActionType.Command,
+        command: "workbench.action.showEditorsInActiveGroup",
+      },
+      {
+        key: "d",
+        name: "Close active editor",
+        type: ActionType.Command,
+        command: "workbench.action.closeActiveEditor",
+      },
+      {
+        key: "H",
+        name: "Move editor into left group",
+        type: ActionType.Command,
+        command: "workbench.action.moveEditorToLeftGroup",
+      },
+      {
+        key: "J",
+        name: "Move editor into below group",
+        type: ActionType.Command,
+        command: "workbench.action.moveEditorToBelowGroup",
+      },
+      {
+        key: "K",
+        name: "Move editor into above group",
+        type: ActionType.Command,
+        command: "workbench.action.moveEditorToAboveGroup",
+      },
+      {
+        key: "L",
+        name: "Move editor into right group",
+        type: ActionType.Command,
+        command: "workbench.action.moveEditorToRightGroup",
+      },
+      {
+        key: "M",
+        name: "Close other editors",
+        type: ActionType.Command,
+        command: "workbench.action.closeOtherEditors",
+      },
+      {
+        key: "n",
+        name: "Next editor",
+        type: ActionType.Command,
+        command: "workbench.action.nextEditor",
+      },
+      {
+        key: "p",
+        name: "Previous editor",
+        type: ActionType.Command,
+        command: "workbench.action.previousEditor",
+      },
+      {
+        key: "N",
+        name: "New untitled editor",
+        type: ActionType.Command,
+        command: "workbench.action.files.newUntitledFile",
+      },
+      {
+        key: "u",
+        name: "Reopen closed editor",
+        type: ActionType.Command,
+        command: "workbench.action.reopenClosedEditor",
+      },
+      {
+        key: "P",
+        name: "Paste clipboard to buffer",
+        type: ActionType.Commands,
+        commands: ["editor.action.selectAll", "editor.action.clipboardPasteAction"],
+      },
+      {
+        key: "Y",
+        name: "Copy buffer to clipboard",
+        type: ActionType.Commands,
+        commands: [
+          "editor.action.selectAll",
+          "editor.action.clipboardCopyAction",
+          "cancelSelection",
+        ],
+      },
+    ],
+  },
+  {
+    key: "d",
+    name: "+Debug",
+    type: ActionType.Bindings,
+    bindings: [
+      {
+        key: "d",
+        name: "Start debug",
+        type: ActionType.Command,
+        command: "workbench.action.debug.start",
+      },
+      {
+        key: "D",
+        name: "Run without debugging",
+        type: ActionType.Command,
+        command: "workbench.action.debug.run",
+      },
+      {
+        key: "S",
+        name: "Stop debug",
+        type: ActionType.Command,
+        command: "workbench.action.debug.stop",
+      },
+      {
+        key: "c",
+        name: "Continue debug",
+        type: ActionType.Command,
+        command: "workbench.action.debug.continue",
+      },
+      {
+        key: "p",
+        name: "Pause debug",
+        type: ActionType.Command,
+        command: "workbench.action.debug.pause",
+      },
+      {
+        key: "R",
+        name: "Restart debug",
+        type: ActionType.Command,
+        command: "workbench.action.debug.restart",
+      },
+      {
+        key: "i",
+        name: "Step into",
+        type: ActionType.Command,
+        command: "workbench.action.debug.stepInto",
+      },
+      {
+        key: "s",
+        name: "Step over",
+        type: ActionType.Command,
+        command: "workbench.action.debug.stepOver",
+      },
+      {
+        key: "o",
+        name: "Step out",
+        type: ActionType.Command,
+        command: "workbench.action.debug.stepOut",
+      },
+      {
+        key: "b",
+        name: "Toggle breakpoint",
+        type: ActionType.Command,
+        command: "editor.debug.action.toggleBreakpoint",
+      },
+      {
+        key: "B",
+        name: "Toggle inline breakpoint",
+        type: ActionType.Command,
+        command: "editor.debug.action.toggleInlineBreakpoint",
+      },
+      {
+        key: "j",
+        name: "Jump to cursor",
+        type: ActionType.Command,
+        command: "debug.jumpToCursor",
+      },
+      {
+        key: "v",
+        name: "REPL",
+        type: ActionType.Command,
+        command: "workbench.debug.action.toggleRepl",
+      },
+      {
+        key: "w",
+        name: "Focus on watch window",
+        type: ActionType.Command,
+        command: "workbench.debug.action.focusWatchView",
+      },
+      {
+        key: "W",
+        name: "Add to watch",
+        type: ActionType.Command,
+        command: "editor.debug.action.selectionToWatch",
+      },
+    ],
+  },
+  {
+    key: "e",
+    name: "+Errors",
+    type: ActionType.Bindings,
+    bindings: [
+      {
+        key: ".",
+        name: "Error transient",
+        type: ActionType.Command,
+        command: "whichkey.showTransient",
+        args: "whichkey.transient.error",
+      },
+      {
+        key: "l",
+        name: "List errors",
+        type: ActionType.Command,
+        command: "workbench.actions.view.problems",
+      },
+      {
+        key: "N",
+        name: "Previous error",
+        type: ActionType.Command,
+        command: "editor.action.marker.prev",
+      },
+      {
+        key: "n",
+        name: "Next error",
+        type: ActionType.Command,
+        command: "editor.action.marker.next",
+      },
+      {
+        key: "p",
+        name: "Previous error",
+        type: ActionType.Command,
+        command: "editor.action.marker.prev",
+      },
+    ],
+  },
+  {
+    key: "f",
+    name: "+File",
+    type: ActionType.Bindings,
+    bindings: [
+      {
+        key: "f",
+        name: "Open file/folder",
+        type: ActionType.Command,
+        command: "whichkey.openFile",
+      },
+      {
+        key: "n",
+        name: "New Untitled",
+        type: ActionType.Command,
+        command: "workbench.action.files.newUntitledFile",
+      },
+      {
+        key: "w",
+        name: "Open active in new window",
+        type: ActionType.Command,
+        command: "workbench.action.files.showOpenedFileInNewWindow",
+      },
+      {
+        key: "s",
+        name: "Save file",
+        type: ActionType.Command,
+        command: "workbench.action.files.save",
+      },
+      {
+        key: "S",
+        name: "Save all files",
+        type: ActionType.Command,
+        command: "workbench.action.files.saveAll",
+      },
+      {
+        key: "r",
+        name: "Open recent",
+        type: ActionType.Command,
+        command: "workbench.action.openRecent",
+      },
+      {
+        key: "R",
+        name: "Rename file",
+        type: ActionType.Commands,
+        commands: ["workbench.files.action.showActiveFileInExplorer", "renameFile"],
+      },
+      {
+        key: "t",
+        name: "Show tree/explorer view",
+        type: ActionType.Command,
+        command: "workbench.view.explorer",
+      },
+      {
+        key: "T",
+        name: "Show active file in tree/explorer view",
+        type: ActionType.Command,
+        command: "workbench.files.action.showActiveFileInExplorer",
+      },
+      {
+        key: "y",
+        name: "Copy path of active file",
+        type: ActionType.Command,
+        command: "workbench.action.files.copyPathOfActiveFile",
+      },
+      {
+        key: "o",
+        name: "Open with",
+        type: ActionType.Command,
+        command: "explorer.openWith",
+      },
+      {
+        key: "l",
+        name: "Change file language",
+        type: ActionType.Command,
+        command: "workbench.action.editor.changeLanguageMode",
+      },
+      {
+        key: "=",
+        name: "Format file",
+        type: ActionType.Command,
+        command: "editor.action.formatDocument",
+      },
+      {
+        key: "i",
+        name: "+Indentation",
+        type: ActionType.Bindings,
+        bindings: [
+          {
+            key: "i",
+            name: "Change indentation",
+            type: ActionType.Command,
+            command: "changeEditorIndentation",
+          },
+          {
+            key: "d",
+            name: "Detect indentation",
+            type: ActionType.Command,
+            command: "editor.action.detectIndentation",
+          },
+          {
+            key: "r",
+            name: "Reindent",
+            type: ActionType.Command,
+            command: "editor.action.reindentlines",
+          },
+          {
+            key: "R",
+            name: "Reindent selected",
+            type: ActionType.Command,
+            command: "editor.action.reindentselectedlines",
+          },
+          {
+            key: "t",
+            name: "Convert indentation to tabs",
+            type: ActionType.Command,
+            command: "editor.action.indentationToTabs",
+          },
+          {
+            key: "s",
+            name: "Convert indentation to spaces",
+            type: ActionType.Command,
+            command: "editor.action.indentationToSpaces",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    key: "g",
+    name: "+Git",
+    type: ActionType.Bindings,
+    bindings: [
+      {
+        key: "b",
+        name: "Checkout",
+        type: ActionType.Command,
+        command: "git.checkout",
+      },
+      {
+        key: "c",
+        name: "Commit",
+        type: ActionType.Command,
+        command: "git.commit",
+      },
+      {
+        key: "d",
+        name: "Delete Branch",
+        type: ActionType.Command,
+        command: "git.deleteBranch",
+      },
+      {
+        key: "f",
+        name: "Fetch",
+        type: ActionType.Command,
+        command: "git.fetch",
+      },
+      {
+        key: "i",
+        name: "Init",
+        type: ActionType.Command,
+        command: "git.init",
+      },
+      {
+        key: "m",
+        name: "Merge",
+        type: ActionType.Command,
+        command: "git.merge",
+      },
+      {
+        key: "p",
+        name: "Publish",
+        type: ActionType.Command,
+        command: "git.publish",
+      },
+      {
+        key: "s",
+        name: "Status",
+        type: ActionType.Command,
+        command: "workbench.view.scm",
+      },
+      {
+        key: "S",
+        name: "Stage",
+        type: ActionType.Command,
+        command: "git.stage",
+      },
+      {
+        key: "U",
+        name: "Unstage",
+        type: ActionType.Command,
+        command: "git.unstage",
+      },
+    ],
+  },
+  {
+    key: "i",
+    name: "+Insert",
+    type: ActionType.Bindings,
+    bindings: [
+      {
+        key: "j",
+        name: "Insert line below",
+        type: ActionType.Command,
+        command: "editor.action.insertLineAfter",
+      },
+      {
+        key: "k",
+        name: "Insert line above",
+        type: ActionType.Command,
+        command: "editor.action.insertLineBefore",
+      },
+      {
+        key: "s",
+        name: "Insert snippet",
+        type: ActionType.Command,
+        command: "editor.action.insertSnippet",
+      },
+    ],
+  },
+  {
+    key: "p",
+    name: "+Project",
+    type: ActionType.Bindings,
+    bindings: [
+      {
+        key: "f",
+        name: "Find file in project",
+        type: ActionType.Command,
+        command: "workbench.action.quickOpen",
+      },
+      {
+        key: "p",
+        name: "Switch project",
+        type: ActionType.Command,
+        command: "workbench.action.openRecent",
+      },
+      {
+        key: "t",
+        name: "Show tree/explorer view",
+        type: ActionType.Command,
+        command: "workbench.view.explorer",
+      },
+    ],
+  },
+  {
+    key: "q",
+    name: "+Quit",
+    type: ActionType.Bindings,
+    bindings: [
+      {
+        key: "q",
+        name: "Close window",
+        type: ActionType.Command,
+        command: "workbench.action.closeWindow",
+      },
+      {
+        key: "Q",
+        name: "Quit VSCode",
+        type: ActionType.Command,
+        command: "workbench.action.quit",
+      },
+    ],
+  },
+  {
+    key: "r",
+    name: "+Repeat",
+    type: ActionType.Bindings,
+    bindings: [
+      {
+        key: ".",
+        name: "Repeat recent actions",
+        type: ActionType.Command,
+        command: "whichkey.repeatRecent",
+      },
+    ],
+  },
+  {
+    key: "s",
+    name: "+Search/Symbol",
+    type: ActionType.Bindings,
+    bindings: [
+      {
+        key: "e",
+        name: "Edit symbol",
+        type: ActionType.Command,
+        command: "editor.action.rename",
+      },
+      {
+        key: "h",
+        name: "Highlight symbol transient",
+        type: ActionType.Commands,
+        commands: ["editor.action.wordHighlight.trigger", "whichkey.showTransient"],
+        args: [null, "whichkey.transient.symbol"],
+      },
+      {
+        key: "j",
+        name: "Jump to symbol in file",
+        type: ActionType.Command,
+        command: "workbench.action.gotoSymbol",
+      },
+      {
+        key: "J",
+        name: "Jump to symbol in workspace",
+        type: ActionType.Command,
+        command: "workbench.action.showAllSymbols",
+      },
+      {
+        key: "p",
+        name: "Search in a project",
+        type: ActionType.Command,
+        command: "workbench.action.findInFiles",
+      },
+      {
+        key: "P",
+        name: "Search in a project with a selection",
+        type: ActionType.Commands,
+        commands: ["editor.action.addSelectionToNextFindMatch", "workbench.action.findInFiles"],
+      },
+      {
+        key: "r",
+        name: "Search all references",
+        type: ActionType.Command,
+        command: "editor.action.referenceSearch.trigger",
+      },
+      {
+        key: "R",
+        name: "Search all references in side bar",
+        type: ActionType.Command,
+        command: "references-view.find",
+      },
+      {
+        key: "s",
+        name: "Search in current file",
+        type: ActionType.Command,
+        command: "actions.find",
+      },
+    ],
+  },
+  {
+    key: "S",
+    name: "+Show",
+    type: ActionType.Bindings,
+    bindings: [
+      {
+        key: "e",
+        name: "Show explorer",
+        type: ActionType.Command,
+        command: "workbench.view.explorer",
+      },
+      {
+        key: "s",
+        name: "Show search",
+        type: ActionType.Command,
+        command: "workbench.view.search",
+      },
+      {
+        key: "g",
+        name: "Show source control",
+        type: ActionType.Command,
+        command: "workbench.view.scm",
+      },
+      {
+        key: "t",
+        name: "Show test",
+        type: ActionType.Command,
+        command: "workbench.view.extension.test",
+      },
+      {
+        key: "r",
+        name: "Show remote explorer",
+        type: ActionType.Command,
+        command: "workbench.view.remote",
+      },
+      {
+        key: "x",
+        name: "Show extensions",
+        type: ActionType.Command,
+        command: "workbench.view.extensions",
+      },
+      {
+        key: "p",
+        name: "Show problem",
+        type: ActionType.Command,
+        command: "workbench.actions.view.problems",
+      },
+      {
+        key: "o",
+        name: "Show output",
+        type: ActionType.Command,
+        command: "workbench.action.output.toggleOutput",
+      },
+      {
+        key: "d",
+        name: "Show debug console",
+        type: ActionType.Command,
+        command: "workbench.debug.action.toggleRepl",
+      },
+    ],
+  },
+  {
+    key: "t",
+    name: "+Toggles",
+    type: ActionType.Bindings,
+    bindings: [
+      {
+        key: "c",
+        name: "Toggle find case sensitive",
+        type: ActionType.Command,
+        command: "toggleFindCaseSensitive",
+      },
+      {
+        key: "w",
+        name: "Toggle ignore trim whitespace in diff",
+        type: ActionType.Command,
+        command: "toggle.diff.ignoreTrimWhitespace",
+      },
+      {
+        key: "W",
+        name: "Toggle word wrap",
+        type: ActionType.Command,
+        command: "editor.action.toggleWordWrap",
+      },
+    ],
+  },
+  {
+    key: "T",
+    name: "+UI toggles",
+    type: ActionType.Bindings,
+    bindings: [
+      {
+        key: "b",
+        name: "Toggle side bar visibility",
+        type: ActionType.Command,
+        command: "workbench.action.toggleSidebarVisibility",
+      },
+      {
+        key: "j",
+        name: "Toggle panel visibility",
+        type: ActionType.Command,
+        command: "workbench.action.togglePanel",
+      },
+      {
+        key: "T",
+        name: "Toggle tab visibility",
+        type: ActionType.Command,
+        command: "workbench.action.toggleEditorTabsVisibility",
+      },
+      {
+        key: "z",
+        name: "Toggle zen mode",
+        type: ActionType.Command,
+        command: "workbench.action.toggleZenMode",
+      },
+    ],
+  },
+  {
+    key: "w",
+    name: "+Window",
+    type: ActionType.Bindings,
+    bindings: [
+      {
+        key: "=",
+        name: "Increase editor width",
+        type: ActionType.Command,
+        command: "workbench.action.increaseViewWidth",
+      },
+      {
+        key: "-",
+        name: "Decrease editor width",
+        type: ActionType.Command,
+        command: "workbench.action.decreaseViewWidth",
+      },
+      {
+        key: "|",
+        name: "Maximize editor",
+        type: ActionType.Command,
+        command: "workbench.action.maximizeEditor",
+      },
+      {
+        key: "_",
+        name: "Minimize editor",
+        type: ActionType.Command,
+        command: "workbench.action.minimizeEditor",
+      },
+      {
+        key: "s",
+        name: "Split editor",
+        type: ActionType.Command,
+        command: "workbench.action.splitEditor",
+      },
+      {
+        key: "v",
+        name: "Split editor vertically",
+        type: ActionType.Command,
+        command: "workbench.action.splitEditorOrthogonal",
+      },
+      {
+        key: "h",
+        name: "Focus left group",
+        type: ActionType.Command,
+        command: "workbench.action.focusLeftGroup",
+      },
+      {
+        key: "j",
+        name: "Focus below group",
+        type: ActionType.Command,
+        command: "workbench.action.focusBelowGroup",
+      },
+      {
+        key: "k",
+        name: "Focus above group",
+        type: ActionType.Command,
+        command: "workbench.action.focusAboveGroup",
+      },
+      {
+        key: "l",
+        name: "Focus right group",
+        type: ActionType.Command,
+        command: "workbench.action.focusRightGroup",
+      },
+      {
+        key: "H",
+        name: "Move editor left",
+        type: ActionType.Command,
+        command: "workbench.action.moveEditorLeftInGroup",
+      },
+      {
+        key: "J",
+        name: "Move editor down",
+        type: ActionType.Command,
+        command: "workbench.action.moveEditorDownInGroup",
+      },
+      {
+        key: "K",
+        name: "Move editor up",
+        type: ActionType.Command,
+        command: "workbench.action.moveEditorUpInGroup",
+      },
+      {
+        key: "L",
+        name: "Move editor right",
+        type: ActionType.Command,
+        command: "workbench.action.moveEditorRightInGroup",
+      },
+      {
+        key: "t",
+        name: "Toggle tool/activity bar visibility",
+        type: ActionType.Command,
+        command: "workbench.action.toggleActivityBarVisibility",
+      },
+      {
+        key: "F",
+        name: "Toggle full screen",
+        type: ActionType.Command,
+        command: "workbench.action.toggleFullScreen",
+      },
+      {
+        key: "m",
+        name: "Toggle maximized panel",
+        type: ActionType.Command,
+        command: "workbench.action.toggleMaximizedPanel",
+      },
+    ],
+  },
+  {
+    key: "z",
+    name: "+View",
+    type: ActionType.Bindings,
+    bindings: [
+      {
+        key: "c",
+        name: "Close sidebar",
+        type: ActionType.Command,
+        command: "workbench.action.closeSidebar",
+      },
+      {
+        key: "h",
+        name: "Move to left split",
+        type: ActionType.Command,
+        command: "workbench.action.moveEditorToLeftGroup",
+      },
+      {
+        key: "j",
+        name: "Move to below split",
+        type: ActionType.Command,
+        command: "workbench.action.moveEditorToBelowGroup",
+      },
+      {
+        key: "k",
+        name: "Move to above split",
+        type: ActionType.Command,
+        command: "workbench.action.moveEditorToAboveGroup",
+      },
+      {
+        key: "l",
+        name: "Move to right split",
+        type: ActionType.Command,
+        command: "workbench.action.moveEditorToRightGroup",
+      },
+      {
+        key: "H",
+        name: "Move sidebar left",
+        type: ActionType.Command,
+        command: "workbench.action.moveSidebarLeft",
+      },
+      {
+        key: "J",
+        name: "Move sidebar bottom",
+        type: ActionType.Command,
+        command: "workbench.action.moveSidebarBottom",
+      },
+      {
+        key: "K",
+        name: "Move sidebar top",
+        type: ActionType.Command,
+        command: "workbench.action.moveSidebarTop",
+      },
+      {
+        key: "L",
+        name: "Move sidebar right",
+        type: ActionType.Command,
+        command: "workbench.action.moveSidebarRight",
+      },
+      {
+        key: "r",
+        name: "Reveal active file",
+        type: ActionType.Command,
+        command: "workbench.files.action.showActiveFileInExplorer",
+      },
+      {
+        key: "s",
+        name: "Search in files",
+        type: ActionType.Command,
+        command: "workbench.action.findInFiles",
+      },
+      {
+        key: "t",
+        name: "Toggle sidebar",
+        type: ActionType.Command,
+        command: "workbench.action.toggleSidebarVisibility",
+      },
+      {
+        key: "v",
+        name: "Split editor",
+        type: ActionType.Command,
+        command: "workbench.action.splitEditor",
+      },
+      {
+        key: "V",
+        name: "Split editor vertically",
+        type: ActionType.Command,
+        command: "workbench.action.splitEditorDown",
+      },
+      {
+        key: "+",
+        name: "Increase editor size",
+        type: ActionType.Command,
+        command: "workbench.action.increaseViewSize",
+      },
+      {
+        key: "=",
+        name: "Increase editor size",
+        type: ActionType.Command,
+        command: "workbench.action.increaseViewSize",
+      },
+      {
+        key: "-",
+        name: "Decrease editor size",
+        type: ActionType.Command,
+        command: "workbench.action.decreaseViewSize",
+      },
+    ],
+  },
+];
+
+/**
+ * Reset bindings to default configuration
+ */
+export async function resetBindingsToDefault(): Promise<void> {
+  const choice = await window.showWarningMessage(
+    "This will replace your current bindings with the default configuration. Continue?",
+    { modal: true },
+    "Reset to Default",
+    "Cancel",
+  );
+
+  if (choice !== "Reset to Default") return;
+
+  // Deep clone to avoid reference issues
+  const defaultBindingsCopy = JSON.parse(JSON.stringify(defaultBindings));
+  await saveBindings(defaultBindingsCopy);
+
+  window.showInformationMessage("Bindings reset to default configuration.");
+}
+
 // Map of deprecated commands to their replacements
 const deprecatedCommands: Record<string, string> = {
   "workbench.action.toggleTabsVisibility": "workbench.action.toggleEditorTabsVisibility",

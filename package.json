@@ -91,6 +91,12 @@
                 "title": "Fix Deprecated Commands in Bindings",
                 "category": "Which Key",
                 "icon": "$(warning)"
+            },
+            {
+                "command": "whichkey.resetBindingsToDefault",
+                "title": "Reset Bindings to Default",
+                "category": "Which Key",
+                "icon": "$(discard)"
             }
         ],
         "configuration": [
@@ -1543,6 +1549,10 @@
                 {
                     "command": "whichkey.fixDeprecatedBindings",
                     "group": "Which Key@5"
+                },
+                {
+                    "command": "whichkey.resetBindingsToDefault",
+                    "group": "Which Key@6"
                 }
             ]
         }

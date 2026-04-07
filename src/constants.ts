@@ -25,6 +25,7 @@ export enum CommandKey {
   RemoveBinding = "removeBinding",
   OpenBindingsSettings = "openBindingsSettings",
   FixDeprecatedBindings = "fixDeprecatedBindings",
+  ResetBindingsToDefault = "resetBindingsToDefault",
 }
 
 export enum SortOrder {
@@ -68,4 +69,5 @@ export const Commands = {
   RemoveBinding: `${contributePrefix}.${CommandKey.RemoveBinding}`,
   OpenBindingsSettings: `${contributePrefix}.${CommandKey.OpenBindingsSettings}`,
   FixDeprecatedBindings: `${contributePrefix}.${CommandKey.FixDeprecatedBindings}`,
+  ResetBindingsToDefault: `${contributePrefix}.${CommandKey.ResetBindingsToDefault}`,
 };

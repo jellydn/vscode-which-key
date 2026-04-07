@@ -5,6 +5,7 @@ import {
   removeBinding,
   openBindingsSettings,
   fixDeprecatedBindings,
+  resetBindingsToDefault,
 } from "./bindingEditor";
 import { CommandRelay } from "./commandRelay";
 import { Commands } from "./constants";
@@ -47,6 +48,7 @@ export function activate(context: ExtensionContext): void {
     commands.registerCommand(Commands.RemoveBinding, removeBinding),
     commands.registerCommand(Commands.OpenBindingsSettings, openBindingsSettings),
     commands.registerCommand(Commands.FixDeprecatedBindings, fixDeprecatedBindings),
+    commands.registerCommand(Commands.ResetBindingsToDefault, resetBindingsToDefault),
   );
 
   context.subscriptions.push(registry, cmdRelay, statusBar);
