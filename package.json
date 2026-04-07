@@ -85,6 +85,12 @@
                 "title": "Open Bindings Settings (JSON)",
                 "category": "Which Key",
                 "icon": "$(file-code)"
+            },
+            {
+                "command": "whichkey.fixDeprecatedBindings",
+                "title": "Fix Deprecated Commands in Bindings",
+                "category": "Which Key",
+                "icon": "$(warning)"
             }
         ],
         "configuration": [
@@ -1533,6 +1539,10 @@
                 {
                     "command": "whichkey.openBindingsSettings",
                     "group": "Which Key@4"
+                },
+                {
+                    "command": "whichkey.fixDeprecatedBindings",
+                    "group": "Which Key@5"
                 }
             ]
         }

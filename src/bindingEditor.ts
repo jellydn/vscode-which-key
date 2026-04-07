@@ -280,3 +280,60 @@ export async function openBindingsSettings(): Promise<void> {
 
   await commands.executeCommand("workbench.action.openSettingsJson", { query: setting });
 }
+
+// Map of deprecated commands to their replacements
+const deprecatedCommands: Record<string, string> = {
+  "workbench.action.toggleTabsVisibility": "workbench.action.toggleEditorTabsVisibility",
+};
+
+/**
+ * Fix deprecated commands in bindings
+ */
+export async function fixDeprecatedBindings(): Promise<void> {
+  const bindings = getBindings();
+  let fixedCount = 0;
+
+  function fixBinding(binding: BindingItem): boolean {
+    let wasFixed = false;
+
+    // Fix command
+    if (binding.command && deprecatedCommands[binding.command]) {
+      binding.command = deprecatedCommands[binding.command];
+      wasFixed = true;
+    }
+
+    // Fix commands array
+    if (binding.commands) {
+      for (let i = 0; i < binding.commands.length; i++) {
+        if (deprecatedCommands[binding.commands[i]]) {
+          binding.commands[i] = deprecatedCommands[binding.commands[i]];
+          wasFixed = true;
+        }
+      }
+    }
+
+    // Recursively fix nested bindings
+    if (binding.bindings) {
+      for (const child of binding.bindings) {
+        if (fixBinding(child)) {
+          wasFixed = true;
+        }
+      }
+    }
+
+    return wasFixed;
+  }
+
+  for (const binding of bindings) {
+    if (fixBinding(binding)) {
+      fixedCount++;
+    }
+  }
+
+  if (fixedCount > 0) {
+    await saveBindings(bindings);
+    window.showInformationMessage(`Fixed ${fixedCount} binding(s) with deprecated commands.`);
+  } else {
+    window.showInformationMessage("No deprecated commands found in your bindings.");
+  }
+}

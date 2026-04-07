@@ -4,6 +4,7 @@ import {
   quickAddBinding,
   removeBinding,
   openBindingsSettings,
+  fixDeprecatedBindings,
 } from "./bindingEditor";
 import { CommandRelay } from "./commandRelay";
 import { Commands } from "./constants";
@@ -45,6 +46,7 @@ export function activate(context: ExtensionContext): void {
     commands.registerCommand(Commands.QuickAddBinding, quickAddBinding),
     commands.registerCommand(Commands.RemoveBinding, removeBinding),
     commands.registerCommand(Commands.OpenBindingsSettings, openBindingsSettings),
+    commands.registerCommand(Commands.FixDeprecatedBindings, fixDeprecatedBindings),
   );
 
   context.subscriptions.push(registry, cmdRelay, statusBar);

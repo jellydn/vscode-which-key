@@ -24,6 +24,7 @@ export enum CommandKey {
   QuickAddBinding = "quickAddBinding",
   RemoveBinding = "removeBinding",
   OpenBindingsSettings = "openBindingsSettings",
+  FixDeprecatedBindings = "fixDeprecatedBindings",
 }
 
 export enum SortOrder {
@@ -66,4 +67,5 @@ export const Commands = {
   QuickAddBinding: `${contributePrefix}.${CommandKey.QuickAddBinding}`,
   RemoveBinding: `${contributePrefix}.${CommandKey.RemoveBinding}`,
   OpenBindingsSettings: `${contributePrefix}.${CommandKey.OpenBindingsSettings}`,
+  FixDeprecatedBindings: `${contributePrefix}.${CommandKey.FixDeprecatedBindings}`,
 };
