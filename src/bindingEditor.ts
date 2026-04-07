@@ -1200,7 +1200,6 @@ export async function resetBindingsToDefault(): Promise<void> {
     "This will replace your current bindings with the default configuration. Continue?",
     { modal: true },
     "Reset to Default",
-    "Cancel",
   );
 
   if (choice !== "Reset to Default") return;
