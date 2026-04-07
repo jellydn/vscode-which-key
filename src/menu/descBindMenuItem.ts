@@ -30,7 +30,6 @@ function conversion(
         description: i.name,
     };
     if (i.bindings) {
-        // eslint-disable-next-line @typescript-eslint/no-use-before-define
         item.items = createDescBindItems(i.bindings, newPath);
     } else if (i.commands || i.command) {
         const { commands, args } = toCommands(i);
