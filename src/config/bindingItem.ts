@@ -13,7 +13,7 @@ export const enum DisplayOption {
 export interface CommandItem {
     command?: string;
     commands?: string[];
-    args?: any;
+    args?: unknown;
 }
 
 export interface BindingItem extends CommandItem {
@@ -43,7 +43,7 @@ export interface TransientBindingItem extends CommandItem {
     exit?: boolean;
 }
 
-export function toBindingItem(o: any): BindingItem | undefined {
+export function toBindingItem(o: unknown): BindingItem | undefined {
     if (typeof o === "object") {
         const config = o as Partial<BindingItem>;
         if (config.key && config.name && config.type) {
@@ -55,16 +55,20 @@ export function toBindingItem(o: any): BindingItem | undefined {
 
 export function toCommands(b: CommandItem): {
     commands: string[];
-    args: any;
+    args: unknown[];
 } {
     let commands: string[];
-    let args;
+    let args: unknown[];
     if (b.commands) {
         commands = b.commands;
-        args = b.args;
+        args = Array.isArray(b.args)
+            ? b.args
+            : b.args !== undefined
+            ? [b.args]
+            : [];
     } else if (b.command) {
         commands = [b.command];
-        args = [b.args];
+        args = b.args !== undefined ? [b.args] : [];
     } else {
         commands = [];
         args = [];

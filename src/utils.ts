@@ -3,11 +3,11 @@ import { CharCode } from "./charCode";
 
 export const nameof = <T>(name: keyof T) => name;
 
-export function setContext(key: string, value: any): Thenable<unknown> {
+export function setContext(key: string, value: unknown): Thenable<unknown> {
     return commands.executeCommand("setContext", key, value);
 }
 
-export function executeCommand(cmd: string, args: any): Thenable<unknown> {
+export function executeCommand(cmd: string, args: unknown): Thenable<unknown> {
     if (Array.isArray(args)) {
         const arr = args as any[];
         return commands.executeCommand(cmd, ...arr);
@@ -22,11 +22,11 @@ export function executeCommand(cmd: string, args: any): Thenable<unknown> {
 
 export async function executeCommands(
     cmds: string[],
-    args: any
+    args: unknown[] | unknown
 ): Promise<void> {
     for (let i = 0; i < cmds.length; i++) {
         const cmd = cmds[i];
-        const arg = args?.[i];
+        const arg = Array.isArray(args) ? args[i] : i === 0 ? args : undefined;
         await executeCommand(cmd, arg);
     }
 }

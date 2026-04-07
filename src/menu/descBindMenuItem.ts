@@ -42,7 +42,7 @@ function conversion(
 }
 export interface DescBindMenuItem extends QuickPickItem {
     commands?: string[];
-    args?: string[];
+    args?: unknown[];
     items?: DescBindMenuItem[];
 }
 
