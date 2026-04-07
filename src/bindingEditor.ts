@@ -1,11 +1,81 @@
-import { commands, window, workspace, QuickPickItem } from "vscode";
+import { commands, window, workspace, type QuickPickItem } from "vscode";
 import { contributePrefix } from "./constants";
-import { ActionType, BindingItem } from "./config/bindingItem";
+import { ActionType, type BindingItem, type TransientBindingItem } from "./config/bindingItem";
 
 interface BindingQuickPickItem extends QuickPickItem {
   binding?: BindingItem;
   isAddNew?: boolean;
 }
+
+/**
+ * Default transient bindings configuration
+ */
+export const defaultTransients: Record<
+  string,
+  { title: string; bindings: TransientBindingItem[] }
+> = {
+  error: {
+    title: "Error transient",
+    bindings: [
+      { key: "N", name: "Previous error", command: "editor.action.marker.prev" },
+      { key: "n", name: "Next error", command: "editor.action.marker.next" },
+      { key: "p", name: "Previous error", command: "editor.action.marker.prev" },
+    ],
+  },
+  symbol: {
+    title: "Highlight symbol transient",
+    bindings: [
+      { key: "p", name: "Previous occurrence", command: "editor.action.wordHighlight.prev" },
+      { key: "N", name: "Previous occurrence", command: "editor.action.wordHighlight.prev" },
+      { key: "n", name: "Next occurrence", command: "editor.action.wordHighlight.next" },
+      {
+        key: "/",
+        name: "Search in a project with a selection",
+        commands: ["editor.action.addSelectionToNextFindMatch", "workbench.action.findInFiles"],
+      },
+    ],
+  },
+  lineMoving: {
+    title: "Line moving transient",
+    bindings: [
+      { key: "J", name: "Move lines down", command: "editor.action.moveLinesDownAction" },
+      { key: "K", name: "Move lines up", command: "editor.action.moveLinesUpAction" },
+    ],
+  },
+  frameZooming: {
+    title: "Frame zooming transient",
+    bindings: [
+      { key: "=", name: "Zoom in", command: "workbench.action.zoomIn" },
+      { key: "+", name: "Zoom in", command: "workbench.action.zoomIn" },
+      { key: "-", name: "Zoom out", command: "workbench.action.zoomOut" },
+      { key: "0", name: "Reset zoom", command: "workbench.action.zoomReset" },
+    ],
+  },
+  fontZooming: {
+    title: "Font zooming transient",
+    bindings: [
+      { key: "=", name: "Zoom in", command: "editor.action.fontZoomIn" },
+      { key: "+", name: "Zoom in", command: "editor.action.fontZoomIn" },
+      { key: "-", name: "Zoom out", command: "editor.action.fontZoomOut" },
+      { key: "0", name: "Reset zoom", command: "editor.action.fontZoomReset" },
+    ],
+  },
+  imageZooming: {
+    title: "Image zooming transient",
+    bindings: [
+      { key: "=", name: "Zoom in", command: "imagePreview.zoomIn" },
+      { key: "+", name: "Zoom in", command: "imagePreview.zoomIn" },
+      { key: "-", name: "Zoom out", command: "imagePreview.zoomOut" },
+    ],
+  },
+  smartExpand: {
+    title: "Smart expand transient",
+    bindings: [
+      { key: "v", name: "Grow selection", command: "editor.action.smartSelect.grow" },
+      { key: "V", name: "Shrink selection", command: "editor.action.smartSelect.shrink" },
+    ],
+  },
+};
 
 /**
  * Get current bindings from configuration
@@ -196,7 +266,7 @@ export async function showBindingsEditor(): Promise<void> {
     // Edit existing
     const updated = await editBinding(selected.binding);
     if (updated) {
-      const index = bindings.findIndex((b) => b.key === selected.binding!.key);
+      const index = bindings.findIndex((b) => b.key === selected.binding?.key);
       if (index >= 0) {
         bindings[index] = updated;
         await saveBindings(bindings);
@@ -261,7 +331,7 @@ export async function removeBinding(): Promise<void> {
   );
 
   if (confirm === "Remove") {
-    const filtered = bindings.filter((b) => b.key !== selected.binding!.key);
+    const filtered = bindings.filter((b) => b.key !== selected.binding?.key);
     await saveBindings(filtered);
     window.showInformationMessage(`Binding '${selected.binding.key}' removed successfully!`);
   }
@@ -394,7 +464,7 @@ export const defaultBindings: BindingItem[] = [
         commands: ["editor.action.selectAll", "editor.action.clipboardPasteAction"],
       },
       {
-        key: "Y",
+        key: "y",
         name: "Copy buffer to clipboard",
         type: ActionType.Commands,
         commands: [
@@ -983,7 +1053,7 @@ export const defaultBindings: BindingItem[] = [
         command: "workbench.action.togglePanel",
       },
       {
-        key: "T",
+        key: "t",
         name: "Toggle tab visibility",
         type: ActionType.Command,
         command: "workbench.action.showMultipleEditorTabs",
@@ -1193,11 +1263,21 @@ export const defaultBindings: BindingItem[] = [
 ];
 
 /**
+ * Save transient bindings to configuration
+ */
+async function saveTransients(
+  transients: Record<string, { title: string; bindings: TransientBindingItem[] }>,
+): Promise<void> {
+  const config = workspace.getConfiguration(contributePrefix);
+  await config.update("transient", transients, true);
+}
+
+/**
  * Reset bindings to default configuration
  */
 export async function resetBindingsToDefault(): Promise<void> {
   const choice = await window.showWarningMessage(
-    "This will replace your current bindings with the default configuration. Continue?",
+    "This will replace your current bindings and transients with the default configuration. Continue?",
     { modal: true },
     "Reset to Default",
   );
@@ -1206,9 +1286,11 @@ export async function resetBindingsToDefault(): Promise<void> {
 
   // Deep clone to avoid reference issues
   const defaultBindingsCopy = JSON.parse(JSON.stringify(defaultBindings));
-  await saveBindings(defaultBindingsCopy);
+  const defaultTransientsCopy = JSON.parse(JSON.stringify(defaultTransients));
 
-  window.showInformationMessage("Bindings reset to default configuration.");
+  await Promise.all([saveBindings(defaultBindingsCopy), saveTransients(defaultTransientsCopy)]);
+
+  window.showInformationMessage("Bindings and transients reset to default configuration.");
 }
 
 // Map of deprecated commands to their replacements
