@@ -20,7 +20,7 @@ function pathToMenuDetail(path: BindingItem[]): string {
 
 function conversion(
     i: BindingItem,
-    prefixPath: BindingItem[] = []
+    prefixPath: BindingItem[] = [],
 ): DescBindMenuItem {
     const newPath = prefixPath.concat(i);
 
@@ -48,7 +48,7 @@ export interface DescBindMenuItem extends QuickPickItem {
 
 export function createDescBindItems(
     items: readonly BindingItem[],
-    path: BindingItem[] = []
+    path: BindingItem[] = [],
 ): DescBindMenuItem[] {
     const curr: DescBindMenuItem[] = [];
     const next: DescBindMenuItem[] = [];

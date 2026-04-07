@@ -19,7 +19,7 @@ import { WhichKeyRepeater } from "./whichKeyRepeater";
 function indexOfKey(
     bindingItems: BindingItem[] | undefined,
     key: string,
-    isCondition = false
+    isCondition = false,
 ): number {
     if (isCondition) {
         return (
@@ -33,7 +33,7 @@ function indexOfKey(
 
 function findBindings(
     items: BindingItem[],
-    keys: string[]
+    keys: string[],
 ): {
     bindingItems: BindingItem[] | undefined;
     isCondition: boolean;
@@ -76,7 +76,7 @@ function convertOverride(key: string, o: OverrideBindingItem): BindingItem {
 
 function overrideBindingItems(
     items: BindingItem[],
-    overrides: OverrideBindingItem[]
+    overrides: OverrideBindingItem[],
 ): void {
     for (const o of overrides) {
         try {
@@ -121,7 +121,7 @@ function overrideBindingItems(
 
 function sortBindingsItems(
     items: BindingItem[] | undefined,
-    comparer: ((a: BindingItem, b: BindingItem) => number) | undefined
+    comparer: ((a: BindingItem, b: BindingItem) => number) | undefined,
 ): void {
     if (!items || !comparer) {
         return;
@@ -173,7 +173,7 @@ function convertToTransientBinding(item: BindingItem): TransientBindingItem[] {
                 });
             } else {
                 console.error(
-                    `Type ${b.type} is not supported in convertToTransientBinding`
+                    `Type ${b.type} is not supported in convertToTransientBinding`,
                 );
             }
         }
@@ -257,7 +257,7 @@ export default class WhichKeyCommand {
                     this.register(config);
                 }
             },
-            this
+            this,
         );
     }
 
@@ -294,7 +294,7 @@ export default class WhichKeyCommand {
     static show(
         bindings: BindingItem[],
         statusBar: StatusBar,
-        cmdRelay: CommandRelay
+        cmdRelay: CommandRelay,
     ): void {
         const delay = getConfig<number>(Configs.Delay) ?? 0;
         const showIcons = getConfig<boolean>(Configs.ShowIcons) ?? true;

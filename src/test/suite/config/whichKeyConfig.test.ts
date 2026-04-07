@@ -26,7 +26,7 @@ suite("WhichKeyConfig Tests", () => {
         test("returns undefined when bindings is missing", () => {
             assert.strictEqual(
                 toWhichKeyConfig({ title: "My Menu" }),
-                undefined
+                undefined,
             );
         });
 
@@ -34,7 +34,7 @@ suite("WhichKeyConfig Tests", () => {
             assert.strictEqual(toWhichKeyConfig({ bindings: 123 }), undefined);
             assert.strictEqual(
                 toWhichKeyConfig({ bindings: { foo: "bar" } }),
-                undefined
+                undefined,
             );
         });
 
@@ -110,22 +110,22 @@ suite("WhichKeyConfig Tests", () => {
         test("handles array with wrong length as invalid", () => {
             assert.strictEqual(
                 toWhichKeyConfig({ bindings: ["only"] }),
-                undefined
+                undefined,
             );
             assert.strictEqual(
                 toWhichKeyConfig({ bindings: ["one", "two", "three"] }),
-                undefined
+                undefined,
             );
         });
 
         test("handles array with non-string elements as invalid", () => {
             assert.strictEqual(
                 toWhichKeyConfig({ bindings: [123, "two"] }),
-                undefined
+                undefined,
             );
             assert.strictEqual(
                 toWhichKeyConfig({ bindings: ["one", 456] }),
-                undefined
+                undefined,
             );
         });
     });
@@ -134,11 +134,11 @@ suite("WhichKeyConfig Tests", () => {
         test("has correct default values", () => {
             assert.strictEqual(
                 defaultWhichKeyConfig.bindings,
-                "whichkey.bindings"
+                "whichkey.bindings",
             );
             assert.strictEqual(
                 defaultWhichKeyConfig.overrides,
-                "whichkey.bindingOverrides"
+                "whichkey.bindingOverrides",
             );
         });
 

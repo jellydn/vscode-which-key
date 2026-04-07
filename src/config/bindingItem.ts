@@ -64,8 +64,8 @@ export function toCommands(b: CommandItem): {
         args = Array.isArray(b.args)
             ? b.args
             : b.args !== undefined
-            ? [b.args]
-            : [];
+              ? [b.args]
+              : [];
     } else if (b.command) {
         commands = [b.command];
         args = b.args !== undefined ? [b.args] : [];

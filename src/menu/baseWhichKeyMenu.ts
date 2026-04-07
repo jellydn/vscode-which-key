@@ -16,8 +16,9 @@ export interface BaseWhichKeyMenuItem {
     key: string;
 }
 
-export interface BaseWhichKeyQuickPickItem<T extends BaseWhichKeyMenuItem>
-    extends QuickPickItem {
+export interface BaseWhichKeyQuickPickItem<
+    T extends BaseWhichKeyMenuItem,
+> extends QuickPickItem {
     item: T;
 }
 
@@ -33,9 +34,9 @@ export type OptionalBaseWhichKeyMenuState<T extends BaseWhichKeyMenuItem> =
     | BaseWhichKeyMenuState<T>
     | undefined;
 
-export abstract class BaseWhichKeyMenu<T extends BaseWhichKeyMenuItem>
-    implements Disposable
-{
+export abstract class BaseWhichKeyMenu<
+    T extends BaseWhichKeyMenuItem,
+> implements Disposable {
     private _acceptQueue: DispatchQueue<T>;
     private _valueQueue: DispatchQueue<string>;
 
@@ -58,10 +59,10 @@ export abstract class BaseWhichKeyMenu<T extends BaseWhichKeyMenuItem>
 
     constructor(cmdRelay: CommandRelay) {
         this._acceptQueue = new DispatchQueue(
-            this.handleAcceptanceDispatch.bind(this)
+            this.handleAcceptanceDispatch.bind(this),
         );
         this._valueQueue = new DispatchQueue(
-            this.handleValueDispatch.bind(this)
+            this.handleValueDispatch.bind(this),
         );
         this._lastValue = "";
         this._expectHiding = false;
@@ -253,7 +254,7 @@ export abstract class BaseWhichKeyMenu<T extends BaseWhichKeyMenuItem>
     }
 
     private async handleDispatch(
-        nextState: Promise<OptionalBaseWhichKeyMenuState<T>>
+        nextState: Promise<OptionalBaseWhichKeyMenuState<T>>,
     ): Promise<void> {
         try {
             const update = await nextState;
@@ -274,7 +275,7 @@ export abstract class BaseWhichKeyMenu<T extends BaseWhichKeyMenuItem>
      * @param item The item begin accepted.
      */
     protected abstract handleAccept(
-        item: T
+        item: T,
     ): Promise<OptionalBaseWhichKeyMenuState<T>>;
 
     /**
@@ -282,7 +283,7 @@ export abstract class BaseWhichKeyMenu<T extends BaseWhichKeyMenuItem>
      * @param key the key that was entered.
      */
     protected abstract handleMismatch(
-        key: string
+        key: string,
     ): Promise<OptionalBaseWhichKeyMenuState<T>>;
 
     /**
@@ -301,7 +302,7 @@ export abstract class BaseWhichKeyMenu<T extends BaseWhichKeyMenuItem>
     update(state: BaseWhichKeyMenuState<T>): void {
         this.clearDelay();
         this._qp.title = state.title;
-        this._qp.buttons = this.showButtons ? state.buttons ?? [] : [];
+        this._qp.buttons = this.showButtons ? (state.buttons ?? []) : [];
         // Need clear the current rendered menu items
         // when user click the back button with delay
         // so we won't show the old menu items while the menu is

@@ -42,14 +42,14 @@ class TransientMenu extends BaseWhichKeyMenu<TransientBindingItem> {
         this.__disposables = [
             cmdRelay.onDidToggleZenMode(this.toggleZenMode, this),
             this.onDidHide(() =>
-                setContext(ContextKey.TransientVisible, false)
+                setContext(ContextKey.TransientVisible, false),
             ),
             this.onDidShow(() => setContext(ContextKey.TransientVisible, true)),
         ];
     }
 
     protected override async handleAccept(
-        item: TransientBindingItem
+        item: TransientBindingItem,
     ): Promise<OptionalTransientMenuState> {
         await this.hide();
         const { commands, args } = toCommands(item);
@@ -59,7 +59,7 @@ class TransientMenu extends BaseWhichKeyMenu<TransientBindingItem> {
     }
 
     protected override async handleMismatch(
-        key: string
+        key: string,
     ): Promise<OptionalTransientMenuState> {
         const msg = `${toSpecializedKey(key)} is undefined`;
         this._statusBar.setErrorMessage(msg);
@@ -67,12 +67,12 @@ class TransientMenu extends BaseWhichKeyMenu<TransientBindingItem> {
     }
 
     protected override handleRender(
-        items: TransientBindingItem[]
+        items: TransientBindingItem[],
     ): BaseWhichKeyQuickPickItem<TransientBindingItem>[] {
         items = items.filter((i) => i.display !== DisplayOption.Hidden);
         const max = items.reduce(
             (acc, val) => (acc > val.key.length ? acc : val.key.length),
-            0
+            0,
         );
 
         return items.map((i) => {
@@ -112,7 +112,7 @@ class TransientMenu extends BaseWhichKeyMenu<TransientBindingItem> {
 export function showTransientMenu(
     statusBar: StatusBar,
     cmdRelay: CommandRelay,
-    config: MaybeConfig<TransientMenuConfig>
+    config: MaybeConfig<TransientMenuConfig>,
 ): Promise<void> {
     return new Promise<void>((resolve, reject) => {
         const menuConfig = resolveMaybeConfig(config);

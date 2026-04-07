@@ -33,7 +33,7 @@ export class StatusBar implements Disposable {
     private _setMessage(
         text: string,
         isError: boolean,
-        timeout?: number
+        timeout?: number,
     ): void {
         this.clearTimeout();
         const fgColor = isError ? StatusBar.ERROR_FG_COLOR : undefined;

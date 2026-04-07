@@ -37,7 +37,7 @@ class RepeaterMenu extends BaseWhichKeyMenu<RepeaterMenuItem> {
     }
 
     protected override async handleAccept(
-        item: RepeaterMenuItem
+        item: RepeaterMenuItem,
     ): Promise<OptionalRepeatMenuState> {
         this._statusBar.hide();
 
@@ -47,7 +47,7 @@ class RepeaterMenu extends BaseWhichKeyMenu<RepeaterMenuItem> {
     }
 
     protected override async handleMismatch(
-        key: string
+        key: string,
     ): Promise<OptionalRepeatMenuState> {
         const msg = `${toSpecializedKey(key)} is undefined`;
         this._statusBar.setErrorMessage(msg);
@@ -55,11 +55,11 @@ class RepeaterMenu extends BaseWhichKeyMenu<RepeaterMenuItem> {
     }
 
     protected override handleRender(
-        items: RepeaterMenuItem[]
+        items: RepeaterMenuItem[],
     ): BaseWhichKeyQuickPickItem<RepeaterMenuItem>[] {
         const max = items.reduce(
             (acc, val) => (acc > val.key.length ? acc : val.key.length),
-            0
+            0,
         );
         return items.map((i) => {
             const label = this.useFullWidthCharacters
@@ -79,7 +79,7 @@ class RepeaterMenu extends BaseWhichKeyMenu<RepeaterMenuItem> {
 export function showRepeaterMenu(
     statusBar: StatusBar,
     cmdRelay: CommandRelay,
-    config: RepeaterMenuConfig
+    config: RepeaterMenuConfig,
 ): Promise<void> {
     return new Promise<void>((resolve, reject) => {
         const menu = new RepeaterMenu(statusBar, cmdRelay);

@@ -1521,7 +1521,7 @@
         "glob": "^13.0.6",
         "mocha": "^11.7.5",
         "ovsx": "^0.10.10",
-        "prettier": "^2.5.1",
+        "prettier": "^3.8.1",
         "process": "^0.11.10",
         "ts-loader": "^9.2.6",
         "typescript": "^4.2.3",

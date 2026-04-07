@@ -19,22 +19,22 @@ Use "Launch Extension" in VSCode debug view (requires `npm run watch` running fi
 
 ## Build Output
 
--   `dist/extension-node` - Node extension bundle
--   `dist/extension-web` - Web extension bundle
--   `package.json` defines both `main` and `browser` entries
+- `dist/extension-node` - Node extension bundle
+- `dist/extension-web` - Web extension bundle
+- `package.json` defines both `main` and `browser` entries
 
 ## Project Structure
 
--   `src/extension.ts` - Entry point, registers commands
--   `src/menu/` - Menu UI components (whichKeyMenu, transientMenu, etc.)
--   `src/config/` - Configuration parsing (whichKeyConfig, bindingItem)
--   `src/test/suite/` - Mocha tests
+- `src/extension.ts` - Entry point, registers commands
+- `src/menu/` - Menu UI components (whichKeyMenu, transientMenu, etc.)
+- `src/config/` - Configuration parsing (whichKeyConfig, bindingItem)
+- `src/test/suite/` - Mocha tests
 
 ## Extension Commands
 
--   `whichkey.show` - Show main menu
--   `whichkey.showTransient` - Show transient (context-aware) menu
--   `whichkey.register` - Register custom bindings (for other extensions)
+- `whichkey.show` - Show main menu
+- `whichkey.showTransient` - Show transient (context-aware) menu
+- `whichkey.register` - Register custom bindings (for other extensions)
 
 ## CI (build.yml)
 

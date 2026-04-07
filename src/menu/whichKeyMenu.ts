@@ -31,7 +31,7 @@ type OptionalWhichKeyMenuState = OptionalBaseWhichKeyMenuState<BindingItem>;
 
 function evalBindingCondition(
     item?: BindingItem,
-    condition?: Condition
+    condition?: Condition,
 ): BindingItem | undefined {
     while (item && item.type === ActionType.Conditional) {
         // Search the condition first. If no matches, find the first empty condition as else
@@ -44,7 +44,7 @@ function evalBindingCondition(
 
 function findBindingWithCondition(
     bindings?: BindingItem[],
-    condition?: Condition
+    condition?: Condition,
 ): BindingItem | undefined {
     return bindings?.find((i) => evalCondition(getCondition(i.key), condition));
 }
@@ -64,7 +64,7 @@ class WhichKeyMenu extends BaseWhichKeyMenu<BindingItem> {
     constructor(
         statusBar: StatusBar,
         cmdRelay: CommandRelay,
-        repeater?: WhichKeyRepeater
+        repeater?: WhichKeyRepeater,
     ) {
         super(cmdRelay);
         this._statusBar = statusBar;
@@ -135,7 +135,7 @@ class WhichKeyMenu extends BaseWhichKeyMenu<BindingItem> {
     }
 
     protected override async handleAccept(
-        item: BindingItem
+        item: BindingItem,
     ): Promise<OptionalWhichKeyMenuState> {
         this._itemHistory.push(item);
         this._statusBar.hide();
@@ -156,7 +156,7 @@ class WhichKeyMenu extends BaseWhichKeyMenu<BindingItem> {
         if (result.bindings) {
             this._statusBar.setPlainMessage(
                 this.toHistoricalKeysString() + "-",
-                0
+                0,
             );
             const items = result.bindings;
             return {
@@ -172,7 +172,7 @@ class WhichKeyMenu extends BaseWhichKeyMenu<BindingItem> {
     }
 
     protected override async handleMismatch(
-        key: string
+        key: string,
     ): Promise<OptionalWhichKeyMenuState> {
         const keyCombo = this.toHistoricalKeysString(key);
         this._statusBar.setErrorMessage(`${keyCombo} is undefined`);
@@ -180,12 +180,12 @@ class WhichKeyMenu extends BaseWhichKeyMenu<BindingItem> {
     }
 
     protected override handleRender(
-        items: BindingItem[]
+        items: BindingItem[],
     ): BaseWhichKeyQuickPickItem<BindingItem>[] {
         items = items.filter((i) => i.display !== DisplayOption.Hidden);
         const max = items.reduce(
             (acc, val) => (acc > val.key.length ? acc : val.key.length),
-            0
+            0,
         );
 
         return items.map((i) => {
@@ -232,7 +232,7 @@ export function showWhichKeyMenu(
     statusBar: StatusBar,
     cmdRelay: CommandRelay,
     repeater: WhichKeyRepeater | undefined,
-    config: WhichKeyMenuConfig
+    config: WhichKeyMenuConfig,
 ) {
     const menu = new WhichKeyMenu(statusBar, cmdRelay, repeater);
     menu.delay = config.delay;

@@ -6,11 +6,14 @@ export interface Condition {
 export function getCondition(key?: string): Condition | undefined {
     if (key && key.length > 0) {
         const props = key.split(";");
-        const r = props.reduce((result, prop) => {
-            const [key, value] = prop.split(":");
-            result[key] = value;
-            return result;
-        }, {} as Record<string, string>);
+        const r = props.reduce(
+            (result, prop) => {
+                const [key, value] = prop.split(":");
+                result[key] = value;
+                return result;
+            },
+            {} as Record<string, string>,
+        );
 
         // Check to make sure at least the one property so we don't create
         // { when: undefined, languagedId: undefined }
@@ -26,7 +29,7 @@ export function getCondition(key?: string): Condition | undefined {
 
 export function evalCondition(
     stored?: Condition,
-    evaluatee?: Condition
+    evaluatee?: Condition,
 ): boolean {
     if (evaluatee && stored) {
         let result = true;
@@ -44,7 +47,7 @@ export function evalCondition(
 
 export function isConditionEqual(
     condition1?: Condition,
-    condition2?: Condition
+    condition2?: Condition,
 ): boolean {
     if (condition1 && condition2) {
         let result = true;

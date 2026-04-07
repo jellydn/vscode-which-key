@@ -24,40 +24,40 @@ export function activate(context: ExtensionContext): void {
         commands.registerCommand(
             Commands.Trigger,
             cmdRelay.triggerKey,
-            cmdRelay
+            cmdRelay,
         ),
         commands.registerCommand(Commands.UndoKey, cmdRelay.undoKey, cmdRelay),
         commands.registerCommand(
             Commands.Register,
             registry.register,
-            registry
+            registry,
         ),
         commands.registerCommand(Commands.Show, registry.show, registry),
         commands.registerCommand(
             Commands.SearchBindings,
             cmdRelay.searchBindings,
-            cmdRelay
+            cmdRelay,
         ),
         commands.registerCommand(
             Commands.ShowTransient,
-            showTransientMenu.bind(registry, statusBar, cmdRelay)
+            showTransientMenu.bind(registry, statusBar, cmdRelay),
         ),
         commands.registerCommand(
             Commands.RepeatRecent,
             registry.repeatRecent,
-            registry
+            registry,
         ),
         commands.registerCommand(
             Commands.RepeatMostRecent,
             registry.repeatMostRecent,
-            registry
+            registry,
         ),
         commands.registerCommand(
             Commands.ToggleZen,
             cmdRelay.toggleZenMode,
-            cmdRelay
+            cmdRelay,
         ),
-        commands.registerCommand(Commands.OpenFile, openFile)
+        commands.registerCommand(Commands.OpenFile, openFile),
     );
 
     context.subscriptions.push(registry, cmdRelay, statusBar);

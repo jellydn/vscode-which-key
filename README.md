@@ -9,9 +9,9 @@ This extension is aimed to provide the standalone which-key function in VScode f
 
 ## Features
 
--   All menu items are customizable
--   The menu key is customizable
--   Extension can bundle this to provide which-key menu
+- All menu items are customizable
+- The menu key is customizable
+- Extension can bundle this to provide which-key menu
 
 ## Documentation
 

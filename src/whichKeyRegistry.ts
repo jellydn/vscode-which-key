@@ -30,7 +30,7 @@ export class WhichKeyRegistry implements Disposable {
             if (!this.has(key)) {
                 this.registry[key] = new WhichKeyCommand(
                     this.statusBar,
-                    this.cmdRelay
+                    this.cmdRelay,
                 );
             }
 

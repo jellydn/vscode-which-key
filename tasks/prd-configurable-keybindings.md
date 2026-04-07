@@ -6,11 +6,11 @@ Currently, the keybindings for which-key are hardcoded in `package.json` under `
 
 ## Goals
 
--   Add `whichkey.triggerKey` setting to configure the menu trigger key
--   Add `whichkey.searchKey` setting to configure the search bindings key
--   Remove hardcoded keybindings from `package.json` and replace with programmatic registration
--   Default values match current behavior (Tab for trigger, Ctrl+H for search)
--   Settings are discoverable in VS Code settings UI
+- Add `whichkey.triggerKey` setting to configure the menu trigger key
+- Add `whichkey.searchKey` setting to configure the search bindings key
+- Remove hardcoded keybindings from `package.json` and replace with programmatic registration
+- Default values match current behavior (Tab for trigger, Ctrl+H for search)
+- Settings are discoverable in VS Code settings UI
 
 ## User Stories
 
@@ -20,9 +20,9 @@ Currently, the keybindings for which-key are hardcoded in `package.json` under `
 
 **Acceptance Criteria:**
 
--   [ ] Add `TriggerKey` and `SearchKey` to `ConfigKey` enum in `src/constants.ts`
--   [ ] Add `triggerKey` and `searchKey` to `Configs` object in `src/constants.ts`
--   [ ] Typecheck passes
+- [ ] Add `TriggerKey` and `SearchKey` to `ConfigKey` enum in `src/constants.ts`
+- [ ] Add `triggerKey` and `searchKey` to `Configs` object in `src/constants.ts`
+- [ ] Typecheck passes
 
 ### US-002: Add keybinding settings to package.json
 
@@ -30,13 +30,13 @@ Currently, the keybindings for which-key are hardcoded in `package.json` under `
 
 **Acceptance Criteria:**
 
--   [ ] Add `whichkey.triggerKey` setting to configuration in `package.json`
--   [ ] Add `whichkey.searchKey` setting to configuration in `package.json`
--   [ ] Type: string (VS Code keybinding format, e.g., "tab", "ctrl+h")
--   [ ] Default for `whichkey.triggerKey`: "tab"
--   [ ] Default for `whichkey.searchKey`: "ctrl+h"
--   [ ] Markdown descriptions explain the setting format
--   [ ] Typecheck passes
+- [ ] Add `whichkey.triggerKey` setting to configuration in `package.json`
+- [ ] Add `whichkey.searchKey` setting to configuration in `package.json`
+- [ ] Type: string (VS Code keybinding format, e.g., "tab", "ctrl+h")
+- [ ] Default for `whichkey.triggerKey`: "tab"
+- [ ] Default for `whichkey.searchKey`: "ctrl+h"
+- [ ] Markdown descriptions explain the setting format
+- [ ] Typecheck passes
 
 ### US-003: Remove hardcoded keybindings from package.json
 
@@ -44,9 +44,9 @@ Currently, the keybindings for which-key are hardcoded in `package.json` under `
 
 **Acceptance Criteria:**
 
--   [ ] Remove `contributes.keybindings` array from `package.json`
--   [ ] Keep `contributes.commands` intact
--   [ ] Typecheck passes
+- [ ] Remove `contributes.keybindings` array from `package.json`
+- [ ] Keep `contributes.commands` intact
+- [ ] Typecheck passes
 
 ### US-004: Register keybindings programmatically on extension activation
 
@@ -54,11 +54,11 @@ Currently, the keybindings for which-key are hardcoded in `package.json` under `
 
 **Acceptance Criteria:**
 
--   [ ] In `src/extension.ts`, register keybindings using `commands.registerCommand` with `when` clauses
--   [ ] Read `Configs.TriggerKey` and `Configs.SearchKey` from configuration
--   [ ] Handle configuration changes to re-register keybindings when settings change
--   [ ] Typecheck passes
--   [ ] Verify in browser using dev-browser skill
+- [ ] In `src/extension.ts`, register keybindings using `commands.registerCommand` with `when` clauses
+- [ ] Read `Configs.TriggerKey` and `Configs.SearchKey` from configuration
+- [ ] Handle configuration changes to re-register keybindings when settings change
+- [ ] Typecheck passes
+- [ ] Verify in browser using dev-browser skill
 
 ### US-005: Handle "when" conditions for keybindings
 
@@ -66,39 +66,39 @@ Currently, the keybindings for which-key are hardcoded in `package.json` under `
 
 **Acceptance Criteria:**
 
--   [ ] Trigger key works only when `whichkeyVisible` is false (to open menu)
--   [ ] Search key works only when `whichkeyVisible` is true (to search within menu)
--   [ ] Typecheck passes
+- [ ] Trigger key works only when `whichkeyVisible` is false (to open menu)
+- [ ] Search key works only when `whichkeyVisible` is true (to search within menu)
+- [ ] Typecheck passes
 
 ## Functional Requirements
 
--   FR-1: Add `whichkey.triggerKey` setting (string, default "tab")
--   FR-2: Add `whichkey.searchKey` setting (string, default "ctrl+h")
--   FR-3: Keybindings are registered programmatically based on settings
--   FR-4: Settings changes are detected and keybindings are re-registered
--   FR-5: Invalid keybinding values are handled gracefully (fallback to defaults)
+- FR-1: Add `whichkey.triggerKey` setting (string, default "tab")
+- FR-2: Add `whichkey.searchKey` setting (string, default "ctrl+h")
+- FR-3: Keybindings are registered programmatically based on settings
+- FR-4: Settings changes are detected and keybindings are re-registered
+- FR-5: Invalid keybinding values are handled gracefully (fallback to defaults)
 
 ## Non-Goals
 
--   No support for complex keybinding chords (e.g., "ctrl+a b")
--   No custom "when" condition support beyond the built-in ones
--   No migration of existing user keybindings in settings.json
+- No support for complex keybinding chords (e.g., "ctrl+a b")
+- No custom "when" condition support beyond the built-in ones
+- No migration of existing user keybindings in settings.json
 
 ## Technical Considerations
 
--   Use `vscode.commands.registerCommand` with keybinding args for trigger
--   Need to track and dispose previous keybinding registrations on config change
--   Keybinding format follows VS Code's keybinding string format
--   The "when" clauses should mirror the current behavior from package.json
+- Use `vscode.commands.registerCommand` with keybinding args for trigger
+- Need to track and dispose previous keybinding registrations on config change
+- Keybinding format follows VS Code's keybinding string format
+- The "when" clauses should mirror the current behavior from package.json
 
 ## Success Metrics
 
--   Users can change trigger key via settings UI
--   Users can change search key via settings UI
--   Keybindings work immediately after changing setting
--   No regression in keybinding functionality
+- Users can change trigger key via settings UI
+- Users can change search key via settings UI
+- Keybindings work immediately after changing setting
+- No regression in keybinding functionality
 
 ## Open Questions
 
--   Should we support modifier-only keys (e.g., just "ctrl")?
--   How should we handle conflicting keybindings with other extensions?
+- Should we support modifier-only keys (e.g., just "ctrl")?
+- How should we handle conflicting keybindings with other extensions?

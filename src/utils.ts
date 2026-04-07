@@ -22,7 +22,7 @@ export function executeCommand(cmd: string, args: unknown): Thenable<unknown> {
 
 export async function executeCommands(
     cmds: string[],
-    args: unknown[] | unknown
+    args: unknown[] | unknown,
 ): Promise<void> {
     for (let i = 0; i < cmds.length; i++) {
         const cmd = cmds[i];

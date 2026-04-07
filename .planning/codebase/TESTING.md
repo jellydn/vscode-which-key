@@ -6,13 +6,13 @@
 
 **Runner:**
 
--   Mocha with TDD UI
--   Config: Inline in `src/test/suite/index-node.ts` and `src/test/suite/index-web.ts`
--   Colors enabled in output
+- Mocha with TDD UI
+- Config: Inline in `src/test/suite/index-node.ts` and `src/test/suite/index-web.ts`
+- Colors enabled in output
 
 **Assertion Library:**
 
--   Node.js built-in `assert` module
+- Node.js built-in `assert` module
 
 **Run Commands:**
 
@@ -26,9 +26,9 @@ npm run test-web      # Web extension tests only
 
 **Location:**
 
--   Pattern: Co-located in `src/test/suite/` directory
--   Test files: `*.test.ts` suffix
--   Test runners: `runTest-node.ts`, `runTest-web.ts`
+- Pattern: Co-located in `src/test/suite/` directory
+- Test files: `*.test.ts` suffix
+- Test runners: `runTest-node.ts`, `runTest-web.ts`
 
 **Structure:**
 
@@ -73,9 +73,9 @@ suite("Extension Test Suite", () => {
 
 **Patterns:**
 
--   Use `suite()` and `test()` (TDD style, not describe/it)
--   Set timeouts with `this.timeout()` for async tests
--   Extension activation tests are standard pattern
+- Use `suite()` and `test()` (TDD style, not describe/it)
+- Set timeouts with `this.timeout()` for async tests
+- Extension activation tests are standard pattern
 
 ## Mocking
 
@@ -83,56 +83,56 @@ suite("Extension Test Suite", () => {
 
 **Patterns:**
 
--   Tests run in actual VSCode instance (via @vscode/test-electron or @vscode/test-web)
--   No mocking of VSCode APIs - integration test approach
+- Tests run in actual VSCode instance (via @vscode/test-electron or @vscode/test-web)
+- No mocking of VSCode APIs - integration test approach
 
 **What to Mock:**
 
--   N/A - integration tests with real VSCode environment
+- N/A - integration tests with real VSCode environment
 
 **What NOT to Mock:**
 
--   VSCode APIs are real in test environment
+- VSCode APIs are real in test environment
 
 ## Fixtures and Factories
 
 **Test Data:**
 
--   `src/test/suite/testUtils.ts` contains shared test utilities
--   Test bindings created inline in tests
+- `src/test/suite/testUtils.ts` contains shared test utilities
+- Test bindings created inline in tests
 
 **Location:**
 
--   Utilities: `src/test/suite/testUtils.ts`
+- Utilities: `src/test/suite/testUtils.ts`
 
 ## Coverage
 
 **Requirements:**
 
--   No explicit coverage target enforced
--   Coverage not mentioned in configuration
+- No explicit coverage target enforced
+- Coverage not mentioned in configuration
 
 **View Coverage:**
 
--   Not configured
+- Not configured
 
 ## Test Types
 
 **Unit Tests:**
 
--   Limited - most tests are integration-style
--   `dispatchQueue.test.ts` tests internal queue logic
+- Limited - most tests are integration-style
+- `dispatchQueue.test.ts` tests internal queue logic
 
 **Integration Tests:**
 
--   Primary test approach
--   Tests run in real VSCode extension host
--   `extension.test.ts` - Extension activation
--   `whichkeyMenu.test.ts` - Menu functionality
+- Primary test approach
+- Tests run in real VSCode extension host
+- `extension.test.ts` - Extension activation
+- `whichkeyMenu.test.ts` - Menu functionality
 
 **E2E Tests:**
 
--   Not used - integration tests serve this purpose
+- Not used - integration tests serve this purpose
 
 ## Common Patterns
 
@@ -159,8 +159,8 @@ test("extension activates", async function () {
 
 **Test Environment Setup:**
 
--   No beforeEach/afterEach patterns observed
--   Tests are independent and self-contained
+- No beforeEach/afterEach patterns observed
+- Tests are independent and self-contained
 
 ---
 

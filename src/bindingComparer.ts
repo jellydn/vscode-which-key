@@ -111,7 +111,7 @@ function getCustomCodePointOrder(a: string) {
 function compareKeyString(
     codePointOrderFn: (s: string) => number,
     a: string,
-    b: string
+    b: string,
 ) {
     const aCodePoint = Array.from(a).map(codePointOrderFn);
     const bCodePoint = Array.from(b).map(codePointOrderFn);
@@ -193,7 +193,7 @@ export function alphabeticalComparer(a: BindingItem, b: BindingItem) {
 export function nonNumberFirstComparer(
     comparer: (a: BindingItem, b: BindingItem) => number,
     a: BindingItem,
-    b: BindingItem
+    b: BindingItem,
 ) {
     const regex = /^[0-9]/;
     const aStartsWithNumber = regex.test(a.key);

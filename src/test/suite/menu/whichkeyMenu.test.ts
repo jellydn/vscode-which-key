@@ -96,7 +96,7 @@ suite("WhichKeyMenu", function () {
         // Wait until the UI is shown
         setTimeout(() => {
             commands.executeCommand(
-                "workbench.action.acceptSelectedQuickOpenItem"
+                "workbench.action.acceptSelectedQuickOpenItem",
             );
         }, 100);
     });

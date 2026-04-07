@@ -72,7 +72,7 @@ const nodeConfig = /** @type WebpackConfig */ {
                 // Remove `src/` in front and `.ts` for key
                 [curr.substring(4, curr.length - 3)]: "./" + curr,
             }),
-            {}
+            {},
         ),
     },
     output: {

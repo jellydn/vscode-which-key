@@ -29,15 +29,15 @@ suite("BindingItem Tests", () => {
         test("returns undefined when missing required fields", () => {
             assert.strictEqual(
                 toBindingItem({ key: "a", name: "Test" }),
-                undefined
+                undefined,
             );
             assert.strictEqual(
                 toBindingItem({ key: "a", type: ActionType.Command }),
-                undefined
+                undefined,
             );
             assert.strictEqual(
                 toBindingItem({ name: "Test", type: ActionType.Command }),
-                undefined
+                undefined,
             );
         });
 
@@ -55,7 +55,7 @@ suite("BindingItem Tests", () => {
             assert.strictEqual(result?.type, ActionType.Command);
             assert.strictEqual(
                 result?.command,
-                "workbench.action.showCommands"
+                "workbench.action.showCommands",
             );
         });
 

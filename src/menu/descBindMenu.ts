@@ -99,7 +99,7 @@ class DescBindMenu implements Disposable {
 
 export function showDescBindMenu(
     items: DescBindMenuItem[],
-    title?: string
+    title?: string,
 ): Promise<void> {
     return new Promise<void>((resolve, reject) => {
         const qp = window.createQuickPick<DescBindMenuItem>();

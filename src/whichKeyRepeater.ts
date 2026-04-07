@@ -47,7 +47,7 @@ export class WhichKeyRepeater {
 
     public constructor(
         private statusBar: StatusBar,
-        private cmdRelay: CommandRelay
+        private cmdRelay: CommandRelay,
     ) {
         this.cache = [];
     }
