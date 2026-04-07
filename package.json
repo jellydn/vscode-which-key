@@ -1013,7 +1013,7 @@
                                         "key": "T",
                                         "name": "Toggle tab visibility",
                                         "type": "command",
-                                        "command": "workbench.action.toggleTabsVisibility"
+                                        "command": "workbench.action.toggleEditorTabsVisibility"
                                     },
                                     {
                                         "key": "z",
