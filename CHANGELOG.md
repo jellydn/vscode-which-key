@@ -7,6 +7,60 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.12.0] - 2025-04-07
+
+### Added
+
+- **Binding Editor Commands** - New interactive commands to manage keybindings without manually editing settings.json:
+  - `Which Key: Edit Bindings` - Interactive UI to add, edit, and remove bindings
+  - `Which Key: Quick Add Binding` - Fast workflow to create new bindings
+  - `Which Key: Remove Binding` - Delete specific bindings with confirmation
+  - `Which Key: Open Bindings Settings (JSON)` - Open settings.json for manual editing
+  - `Which Key: Fix Deprecated Commands` - Automatically update old command IDs to new ones
+  - `Which Key: Reset Bindings to Default` - Reset all bindings and transients to defaults
+
+- **Command Validation Tests** - Added comprehensive test suite to verify all default binding commands exist in VSCode's command registry
+
+- **Default Transients in TypeScript** - Added `defaultTransients` constant for transient menu configurations (error, symbol, lineMoving, frameZooming, fontZooming, imageZooming, smartExpand)
+
+### Changed
+
+- **TypeScript is now Single Source of Truth (SOT)** for all default bindings:
+  - Removed 1000+ lines of default bindings from `package.json`
+  - Removed all default transient configurations from `package.json`
+  - All defaults now defined in `bindingEditor.ts` as typed constants
+  - Reset command now updates both bindings AND transients from TypeScript
+
+- **Migrated from ESLint/Prettier to Oxc**:
+  - Linter: ESLint 10 + typescript-eslint 8 → **oxlint 1.59** (93 rules, 17ms)
+  - Formatter: Prettier 3 → **oxfmt 0.44** (23ms)
+  - Build time improvement: ~2-3s → ~20-30ms (100x faster lint/format)
+
+- **Updated Dependencies**:
+  - TypeScript: 4.2.3 → 6.0.2
+  - Node types: 16.x → 20.17.39 (aligned with VSCode 1.95+ Node 20 runtime)
+  - glob: 7.2.3 → 13.0.6 (migrated to promise-based API)
+  - mocha: 9.2.2 → 11.7.5
+  - webpack: 5.95.0 → 5.105.4
+  - Minimum VSCode version: ^1.45.0 → ^1.95.0
+
+- **Test Improvements**:
+  - Added DispatchQueue tests with proper race condition handling
+  - Added CommandRelay event emission tests
+  - Added BindingItem validation tests
+  - Added WhichKeyConfig parsing tests
+  - Total: 51 passing tests
+
+### Fixed
+
+- Fixed invalid commands in default bindings:
+  - `changeEditorIndentation` → `editor.action.indentUsingSpaces`
+  - `references-view.find` → `editor.action.goToReferences`
+  - `workbench.action.toggleTabsVisibility` → `workbench.action.showMultipleEditorTabs`
+  - Removed non-existent `maximizeEditor`, `minimizeEditor`, `moveSidebar*` commands
+- Fixed TypeScript strict type issues (null handling, timer types)
+- Fixed duplicate Cancel button in reset dialog (VSCode modal adds Cancel automatically)
+
 ## [0.11.4] - 2024-01-07
 
 ### Fixed
