@@ -44,7 +44,7 @@ export interface TransientBindingItem extends CommandItem {
 }
 
 export function toBindingItem(o: unknown): BindingItem | undefined {
-    if (typeof o === "object") {
+    if (typeof o === "object" && o !== null) {
         const config = o as Partial<BindingItem>;
         if (config.key && config.name && config.type) {
             return config as BindingItem;
@@ -61,14 +61,15 @@ export function toCommands(b: CommandItem): {
     let args: unknown[];
     if (b.commands) {
         commands = b.commands;
-        args = Array.isArray(b.args)
-            ? b.args
-            : b.args !== undefined
-              ? [b.args]
-              : [];
+        args =
+            b.args !== undefined && b.args !== null
+                ? Array.isArray(b.args)
+                    ? b.args
+                    : [b.args]
+                : [];
     } else if (b.command) {
         commands = [b.command];
-        args = b.args !== undefined ? [b.args] : [];
+        args = b.args !== undefined && b.args !== null ? [b.args] : [];
     } else {
         commands = [];
         args = [];
