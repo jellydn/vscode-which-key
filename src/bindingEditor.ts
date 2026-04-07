@@ -632,7 +632,7 @@ export const defaultBindings: BindingItem[] = [
             key: "i",
             name: "Change indentation",
             type: ActionType.Command,
-            command: "changeEditorIndentation",
+            command: "editor.action.indentUsingSpaces",
           },
           {
             key: "d",
@@ -869,7 +869,7 @@ export const defaultBindings: BindingItem[] = [
         key: "R",
         name: "Search all references in side bar",
         type: ActionType.Command,
-        command: "references-view.find",
+        command: "editor.action.goToReferences",
       },
       {
         key: "s",
@@ -986,7 +986,7 @@ export const defaultBindings: BindingItem[] = [
         key: "T",
         name: "Toggle tab visibility",
         type: ActionType.Command,
-        command: "workbench.action.toggleEditorTabsVisibility",
+        command: "workbench.action.showMultipleEditorTabs",
       },
       {
         key: "z",
@@ -1017,13 +1017,13 @@ export const defaultBindings: BindingItem[] = [
         key: "|",
         name: "Maximize editor",
         type: ActionType.Command,
-        command: "workbench.action.maximizeEditor",
+        command: "workbench.action.toggleEditorWidths",
       },
       {
         key: "_",
         name: "Minimize editor",
         type: ActionType.Command,
-        command: "workbench.action.minimizeEditor",
+        command: "workbench.action.toggleEditorWidths",
       },
       {
         key: "s",
@@ -1063,21 +1063,21 @@ export const defaultBindings: BindingItem[] = [
       },
       {
         key: "H",
-        name: "Move editor left",
+        name: "Move editor left in group",
         type: ActionType.Command,
         command: "workbench.action.moveEditorLeftInGroup",
       },
       {
         key: "J",
-        name: "Move editor down",
+        name: "Focus next group",
         type: ActionType.Command,
-        command: "workbench.action.moveEditorDownInGroup",
+        command: "workbench.action.focusBelowGroup",
       },
       {
         key: "K",
-        name: "Move editor up",
+        name: "Focus previous group",
         type: ActionType.Command,
-        command: "workbench.action.moveEditorUpInGroup",
+        command: "workbench.action.focusAboveGroup",
       },
       {
         key: "L",
@@ -1139,30 +1139,6 @@ export const defaultBindings: BindingItem[] = [
         name: "Move to right split",
         type: ActionType.Command,
         command: "workbench.action.moveEditorToRightGroup",
-      },
-      {
-        key: "H",
-        name: "Move sidebar left",
-        type: ActionType.Command,
-        command: "workbench.action.moveSidebarLeft",
-      },
-      {
-        key: "J",
-        name: "Move sidebar bottom",
-        type: ActionType.Command,
-        command: "workbench.action.moveSidebarBottom",
-      },
-      {
-        key: "K",
-        name: "Move sidebar top",
-        type: ActionType.Command,
-        command: "workbench.action.moveSidebarTop",
-      },
-      {
-        key: "L",
-        name: "Move sidebar right",
-        type: ActionType.Command,
-        command: "workbench.action.moveSidebarRight",
       },
       {
         key: "r",
@@ -1237,9 +1213,7 @@ export async function resetBindingsToDefault(): Promise<void> {
 }
 
 // Map of deprecated commands to their replacements
-const deprecatedCommands: Record<string, string> = {
-  "workbench.action.toggleTabsVisibility": "workbench.action.toggleEditorTabsVisibility",
-};
+const deprecatedCommands: Record<string, string> = {};
 
 /**
  * Fix deprecated commands in bindings
