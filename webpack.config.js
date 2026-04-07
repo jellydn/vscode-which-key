@@ -1,4 +1,4 @@
-const glob = require("glob");
+const { globSync } = require("glob");
 const path = require("path");
 const webpack = require("webpack");
 
@@ -66,11 +66,11 @@ const nodeConfig = /** @type WebpackConfig */ {
             "test/runTest-web": "./src/test/runTest-web", // used to start the VS Code test runner (@vscode/test-web)
         },
         // create separate files for the test to be found by glob in code
-        ...glob.sync("./src/test/suite/**/*.test.ts").reduce(
+        ...globSync("./src/test/suite/**/*.test.ts").reduce(
             (acc, curr) => ({
                 ...acc,
-                // Remove `./src/` in front and `.ts` for key
-                [curr.substring(6, curr.length - 3)]: curr,
+                // Remove `src/` in front and `.ts` for key
+                [curr.substring(4, curr.length - 3)]: "./" + curr,
             }),
             {}
         ),

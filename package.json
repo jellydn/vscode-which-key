@@ -1518,7 +1518,7 @@
         "assert": "^2.0.0",
         "eslint": "^8.1.0",
         "eslint-config-prettier": "^8.3.0",
-        "glob": "^7.1.6",
+        "glob": "^13.0.6",
         "mocha": "^9.1.3",
         "ovsx": "^0.10.10",
         "prettier": "^2.5.1",
