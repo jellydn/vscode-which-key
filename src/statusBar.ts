@@ -8,7 +8,7 @@ export class StatusBar implements Disposable {
     private _timeout: number;
     private _isError: boolean;
     private _item: StatusBarItem;
-    private _timerId?: NodeJS.Timer;
+    private _timerId?: ReturnType<typeof setInterval>;
 
     constructor() {
         this._isError = false;

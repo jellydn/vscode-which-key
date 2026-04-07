@@ -45,7 +45,7 @@ export abstract class BaseWhichKeyMenu<
     private _lastValue: string;
     private _expectHiding: boolean;
     private _state: BaseWhichKeyMenuState<T>;
-    private _timeoutId?: NodeJS.Timeout;
+    private _timeoutId?: ReturnType<typeof setTimeout>;
     private _disposables: Disposable[];
 
     private _onDidShowEmitter: EventEmitter<void>;
