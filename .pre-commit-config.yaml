@@ -1,0 +1,30 @@
+# Pre-commit configuration for vscode-which-key
+# https://pre-commit.com/
+
+repos:
+  # Local hooks using project dependencies
+  - repo: local
+    hooks:
+      - id: oxfmt
+        name: oxfmt
+        entry: npx oxfmt --write src
+        language: system
+        files: \.ts$
+        pass_filenames: false
+        always_run: true
+
+      - id: oxlint
+        name: oxlint
+        entry: npx oxlint src
+        language: system
+        files: \.ts$
+        pass_filenames: false
+        always_run: true
+
+      - id: type-check
+        name: TypeScript type check
+        entry: npx tsc --noEmit
+        language: system
+        files: \.ts$
+        pass_filenames: false
+        always_run: true
