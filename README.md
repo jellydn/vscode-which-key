@@ -1,11 +1,18 @@
 # vscode-which-key (Preview)
 
-[![Docs](https://img.shields.io/website?label=vspacecode.github.io&url=https%3A%2F%2Fvspacecode.github.io)](https://vspacecode.github.io/docs/whichkey)
-[![Version](https://img.shields.io/visual-studio-marketplace/v/vspacecode.whichkey)](https://marketplace.visualstudio.com/items?itemName=vspacecode.whichkey)
-[![Installs](https://img.shields.io/visual-studio-marketplace/i/vspacecode.whichkey)](https://marketplace.visualstudio.com/items?itemName=vspacecode.whichkey)
-[![Ratings](https://img.shields.io/visual-studio-marketplace/r/vspacecode.whichkey)](https://marketplace.visualstudio.com/items?itemName=vspacecode.whichkey)
+> 🍴 **Actively Maintained Fork** — This is a community-maintained fork of the original [VSpaceCode/vscode-which-key](https://github.com/VSpaceCode/vscode-which-key). The upstream repository has seen limited activity, so this fork aims to provide continued maintenance, updates, and community support.
 
-This extension is aimed to provide the standalone which-key function in VScode for both users and extension to bundle.
+[![Version](https://img.shields.io/visual-studio-marketplace/v/jellydn.whichkey)](https://marketplace.visualstudio.com/items?itemName=jellydn.whichkey)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/jellydn.whichkey)](https://marketplace.visualstudio.com/items?itemName=jellydn.whichkey)
+[![Ratings](https://img.shields.io/visual-studio-marketplace/r/jellydn.whichkey)](https://marketplace.visualstudio.com/items?itemName=jellydn.whichkey)
+[![CI](https://github.com/jellydn/vscode-whichkey/actions/workflows/ci.yml/badge.svg)](https://github.com/jellydn/vscode-whichkey/actions/workflows/ci.yml)
+
+This extension provides a standalone which-key menu for VSCode, inspired by Emacs's which-key. It helps you discover and execute commands through an interactive keybinding menu.
+
+**Key differences from upstream:**
+- ✅ Active maintenance and dependency updates
+- ✅ Modern CI/CD with automated publishing to both VSCode Marketplace and Open VSX
+- ✅ Community-driven development
 
 ## Features
 
@@ -15,7 +22,17 @@ This extension is aimed to provide the standalone which-key function in VScode f
 
 ## Documentation
 
-See [here](https://vspacecode.github.io/docs/whichkey/).
+The original documentation is available at [vspacecode.github.io/docs/whichkey](https://vspacecode.github.io/docs/whichkey/).
+
+For this fork-specific documentation and release notes, see:
+- [CHANGELOG.md](CHANGELOG.md) — Release history
+- [GitHub Issues](https://github.com/jellydn/vscode-whichkey/issues) — Bug reports and feature requests
+
+## Installation
+
+Install from:
+- [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=jellydn.whichkey)
+- [Open VSX Registry](https://open-vsx.org/extension/jellydn/whichkey)
 
 ## Release Notes
 
@@ -27,4 +44,6 @@ All feature requests and help are welcome. Please open an issue to track.
 
 ## Credits
 
-Thanks @kahole for his implementation of quick pick menu in edamagit.
+- Thanks to [VSpaceCode](https://github.com/VSpaceCode) for the original implementation
+- Thanks @kahole for his implementation of quick pick menu in edamagit
+- Thanks to all contributors who help maintain this fork
