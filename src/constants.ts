@@ -1,4 +1,4 @@
-export const extensionId = "jellydn.whichkey";
+export const extensionId = "jellydn.whichkey-next";
 export const contributePrefix = "whichkey";
 export enum ConfigKey {
   Delay = "delay",
