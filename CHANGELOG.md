@@ -7,6 +7,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.12.1] - 2025-04-27
+
+### Added (Fork Release)
+
+- **Fork established** - This is the first release under the `jellydn` publisher as an actively maintained fork of the original VSpaceCode extension
+- **New extension branding**:
+  - Extension ID: `jellydn.vscode-whichkey` (previously `VSpaceCode.whichkey`)
+  - Display name: "Which Key (Next)" (renamed to avoid Marketplace conflict)
+  - New logo/icon created with VSCode blue color scheme
+- **Modern CI/CD pipeline**:
+  - GitHub Actions for CI (lint, format-check, test on ubuntu/macos/windows)
+  - Automated publishing to both VSCode Marketplace and Open VSX Registry
+  - New `setup-secrets` script for easy GitHub secrets configuration
+- **Setup script** - Added `npm run setup-secrets` to help configure `VSCE_PAT` and `OVSX_PAT`
+
+### Changed (Fork Infrastructure)
+
+- **Publisher changed** from `VSpaceCode` to `jellydn`
+- **Author updated** to Huynh Duc Dung with GitHub sponsorship links
+- **Repository URLs** updated to point to `https://github.com/jellydn/vscode-whichkey`
+- **License** remains MIT with updated copyright
+- **Package manager** tools updated:
+  - Migrated from deprecated `vsce` to `@vscode/vsce@^3.3.0`
+  - Added `vsxpub@^0.1.4` for dual publishing
+- **Dependencies aligned**:
+  - `@types/vscode`: ^1.45.0 → ^1.97.0
+  - `engines.vscode`: ^1.95.0 → ^1.97.0
+
+### Fixed (Tests & Build)
+
+- **Extension ID** in tests updated from `VSpaceCode.whichkey` to `jellydn.vscode-whichkey`
+- **Web test compatibility** - Skip command validation tests in web environment (git commands unavailable)
+- **SVG to PNG conversion** - Logo now uses path-based design for reliable ImageMagick conversion
+
 ## [0.12.0] - 2025-04-07
 
 ### Added
