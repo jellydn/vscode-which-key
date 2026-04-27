@@ -1,5 +1,5 @@
 {
-    "name": "whichkey-next",
+    "name": "vscode-whichkey",
     "preview": true,
     "displayName": "Which Key",
     "description": "which-key like menu for Visual Studio Code",

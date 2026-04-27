@@ -2,9 +2,9 @@
 
 > 🍴 **Actively Maintained Fork** — This is a community-maintained fork of the original [VSpaceCode/vscode-which-key](https://github.com/VSpaceCode/vscode-which-key). The upstream repository has seen limited activity, so this fork aims to provide continued maintenance, updates, and community support.
 
-[![Version](https://img.shields.io/visual-studio-marketplace/v/jellydn.whichkey-next)](https://marketplace.visualstudio.com/items?itemName=jellydn.whichkey-next)
-[![Installs](https://img.shields.io/visual-studio-marketplace/i/jellydn.whichkey-next)](https://marketplace.visualstudio.com/items?itemName=jellydn.whichkey-next)
-[![Ratings](https://img.shields.io/visual-studio-marketplace/r/jellydn.whichkey-next)](https://marketplace.visualstudio.com/items?itemName=jellydn.whichkey-next)
+[![Version](https://img.shields.io/visual-studio-marketplace/v/jellydn.vscode-whichkey)](https://marketplace.visualstudio.com/items?itemName=jellydn.vscode-whichkey)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/jellydn.vscode-whichkey)](https://marketplace.visualstudio.com/items?itemName=jellydn.vscode-whichkey)
+[![Ratings](https://img.shields.io/visual-studio-marketplace/r/jellydn.vscode-whichkey)](https://marketplace.visualstudio.com/items?itemName=jellydn.vscode-whichkey)
 [![CI](https://github.com/jellydn/vscode-whichkey/actions/workflows/ci.yml/badge.svg)](https://github.com/jellydn/vscode-whichkey/actions/workflows/ci.yml)
 
 This extension provides a standalone which-key menu for VSCode, inspired by Emacs's which-key. It helps you discover and execute commands through an interactive keybinding menu.
@@ -31,8 +31,8 @@ For this fork-specific documentation and release notes, see:
 ## Installation
 
 Install from:
-- [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=jellydn.whichkey-next)
-- [Open VSX Registry](https://open-vsx.org/extension/jellydn/whichkey-next)
+- [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=jellydn.vscode-whichkey)
+- [Open VSX Registry](https://open-vsx.org/extension/jellydn/vscode-whichkey)
 
 ## Release Notes
 
