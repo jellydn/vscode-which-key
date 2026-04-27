@@ -3,13 +3,19 @@
     "preview": true,
     "displayName": "Which Key",
     "description": "which-key like menu for Visual Studio Code",
-    "publisher": "VSpaceCode",
+    "publisher": "jellydn",
+    "private": true,
     "author": {
-        "name": "Steven Guh"
+        "name": "Huynh Duc Dung",
+        "email": "dung@productsway.com"
+    },
+    "funding": "https://github.com/sponsors/jellydn",
+    "sponsor": {
+        "url": "https://github.com/sponsors/jellydn"
     },
     "version": "0.12.0",
     "engines": {
-        "vscode": "^1.95.0"
+        "vscode": "^1.97.0"
     },
     "galleryBanner": {
         "color": "#3a3d41",
@@ -26,14 +32,14 @@
         "ui",
         "workspace"
     ],
-    "license": "SEE LICENSE IN LICENSE.txt",
-    "homepage": "https://github.com/VSpaceCode/vscode-which-key",
+    "license": "MIT",
+    "homepage": "https://github.com/jellydn/vscode-whichkey#readme",
     "repository": {
         "type": "git",
-        "url": "https://github.com/VSpaceCode/vscode-which-key.git"
+        "url": "https://github.com/jellydn/vscode-whichkey"
     },
     "bugs": {
-        "url": "https://github.com/VSpaceCode/vscode-which-key/issues"
+        "url": "https://github.com/jellydn/vscode-whichkey/issues"
     },
     "activationEvents": [
         "onCommand:whichkey.show",
@@ -203,13 +209,14 @@
         "test-web": "node ./dist/test/runTest-web.js",
         "pack": "npm run vscode:prepublish && npx @vscode/vsce package --no-dependencies",
         "pack:ovsx": "npm run vscode:prepublish && npx ovsx pack",
-        "install-local": "code --install-extension whichkey-0.11.4.vsix"
+        "install-local": "code --install-extension whichkey-0.11.4.vsix",
+        "setup-secrets": "node scripts/setup-secrets.js"
     },
     "devDependencies": {
         "@types/glob": "^9.0.0",
         "@types/mocha": "^10.0.10",
         "@types/node": "^20.19.39",
-        "@types/vscode": "^1.45.0",
+        "@types/vscode": "^1.97.0",
         "@types/webpack-env": "^1.16.0",
         "@vscode/test-electron": "^2.1.2",
         "@vscode/test-web": "^0.0.80",
@@ -222,7 +229,8 @@
         "process": "^0.11.10",
         "ts-loader": "^9.2.6",
         "typescript": "^6.0.2",
-        "vsce": "^2.6.3",
+        "@vscode/vsce": "^3.3.0",
+        "vsxpub": "^0.1.4",
         "webpack": "^5.76.0",
         "webpack-cli": "^7.0.2"
     }

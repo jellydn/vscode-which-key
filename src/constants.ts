@@ -1,4 +1,4 @@
-export const extensionId = "VSpaceCode.whichkey";
+export const extensionId = "jellydn.whichkey";
 export const contributePrefix = "whichkey";
 export enum ConfigKey {
   Delay = "delay",
