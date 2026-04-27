@@ -33,6 +33,7 @@
         "workspace"
     ],
     "license": "MIT",
+    "icon": "res/logo.png",
     "homepage": "https://github.com/jellydn/vscode-whichkey#readme",
     "repository": {
         "type": "git",

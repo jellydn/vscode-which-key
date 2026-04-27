@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#252526"/>
+      <stop offset="100%" style="stop-color:#1e1e1e"/>
+    </linearGradient>
+    <linearGradient id="keyBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#5cb3ff"/>
+      <stop offset="100%" style="stop-color:#007acc"/>
+    </linearGradient>
+    <linearGradient id="keyTeal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ec9b0"/>
+      <stop offset="100%" style="stop-color:#2d8a76"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect x="8" y="8" width="112" height="112" rx="24" fill="url(#bgGrad)"/>
+
+  <!-- Large main key -->
+  <rect x="20" y="16" width="88" height="56" rx="12" fill="url(#keyBlue)"/>
+
+  <!-- Key content: "SPC" -->
+  <text x="64" y="48" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="600" fill="#ffffff" text-anchor="middle" letter-spacing="2">SPC</text>
+
+  <!-- Cascading menu indicator -->
+  <path d="M 28 72 L 64 96 L 100 72" stroke="#4ec9b0" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Small indicator keys -->
+  <rect x="44" y="88" width="16" height="16" rx="4" fill="url(#keyTeal)"/>
+  <rect x="64" y="88" width="16" height="16" rx="4" fill="url(#keyTeal)" opacity="0.7"/>
+  <rect x="84" y="88" width="16" height="16" rx="4" fill="url(#keyTeal)" opacity="0.4"/>
+
+  <!-- Subtle glow -->
+  <circle cx="64" cy="44" r="30" fill="#5cb3ff" opacity="0.1"/>
+</svg>
